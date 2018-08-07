@@ -1,0 +1,9 @@
+platform :ios, '11.0'
+use_frameworks!
+
+target 'Actifit' do
+pod 'RealmSwift', '3.0'
+end
+
+
+

@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE272632211452890020E32D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272631211452890020E32D /* AppDelegate.swift */; };
+		5F912D2BD619DE8C3FE85463 /* Pods_Actifit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDABFA1F3E07474B668EE1A /* Pods_Actifit.framework */; };
+		BE0AB411211A29B1000E9AEA /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB410211A29B1000E9AEA /* Activity.swift */; };
+		BE0AB413211A2C89000E9AEA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB412211A2C89000E9AEA /* Constants.swift */; };
+		BE272632211452890020E32D /* AFAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272631211452890020E32D /* AFAppDelegate.swift */; };
 		BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272633211452890020E32D /* ActivityTrackingVC.swift */; };
 		BE272637211452890020E32D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE272635211452890020E32D /* Main.storyboard */; };
 		BE272639211452940020E32D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE272638211452940020E32D /* Assets.xcassets */; };
@@ -15,8 +18,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0FDABFA1F3E07474B668EE1A /* Pods_Actifit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Actifit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BF616C1E455A6E6AD074981 /* Pods-Actifit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Actifit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Actifit/Pods-Actifit.release.xcconfig"; sourceTree = "<group>"; };
+		B9C0610DDDC898B29A3927DD /* Pods-Actifit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Actifit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Actifit/Pods-Actifit.debug.xcconfig"; sourceTree = "<group>"; };
+		BE0AB410211A29B1000E9AEA /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		BE0AB412211A2C89000E9AEA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BE27262E211452890020E32D /* Actifit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Actifit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE272631211452890020E32D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BE272631211452890020E32D /* AFAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFAppDelegate.swift; sourceTree = "<group>"; };
 		BE272633211452890020E32D /* ActivityTrackingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTrackingVC.swift; sourceTree = "<group>"; };
 		BE272636211452890020E32D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE272638211452940020E32D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -29,17 +37,63 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F912D2BD619DE8C3FE85463 /* Pods_Actifit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A7B9FC8F5CBC040CCCDA293 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B9C0610DDDC898B29A3927DD /* Pods-Actifit.debug.xcconfig */,
+				2BF616C1E455A6E6AD074981 /* Pods-Actifit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5AA13FC8C3C7E14596880E7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0FDABFA1F3E07474B668EE1A /* Pods_Actifit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE0AB40F211A2993000E9AEA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BE0AB410211A29B1000E9AEA /* Activity.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BE0AB414211A2C8D000E9AEA /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				BE272631211452890020E32D /* AFAppDelegate.swift */,
+				BE0AB412211A2C89000E9AEA /* Constants.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		BE0AB415211A302D000E9AEA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE272635211452890020E32D /* Main.storyboard */,
+				BE272633211452890020E32D /* ActivityTrackingVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		BE272625211452890020E32D = {
 			isa = PBXGroup;
 			children = (
 				BE272630211452890020E32D /* Actifit */,
 				BE27262F211452890020E32D /* Products */,
+				5A7B9FC8F5CBC040CCCDA293 /* Pods */,
+				5AA13FC8C3C7E14596880E7C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,9 +108,9 @@
 		BE272630211452890020E32D /* Actifit */ = {
 			isa = PBXGroup;
 			children = (
-				BE272631211452890020E32D /* AppDelegate.swift */,
-				BE272633211452890020E32D /* ActivityTrackingVC.swift */,
-				BE272635211452890020E32D /* Main.storyboard */,
+				BE0AB414211A2C8D000E9AEA /* AppDelegate */,
+				BE0AB415211A302D000E9AEA /* Controllers */,
+				BE0AB40F211A2993000E9AEA /* Models */,
 				BE272638211452940020E32D /* Assets.xcassets */,
 				BE27263A211452940020E32D /* LaunchScreen.storyboard */,
 				BE27263D211452940020E32D /* Info.plist */,
@@ -71,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE272640211452940020E32D /* Build configuration list for PBXNativeTarget "Actifit" */;
 			buildPhases = (
+				BB47EEC5E283BA609ECC6596 /* [CP] Check Pods Manifest.lock */,
 				BE27262A211452890020E32D /* Sources */,
 				BE27262B211452890020E32D /* Frameworks */,
 				BE27262C211452890020E32D /* Resources */,
+				608E413149C4C96DA8AD73FE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,13 +185,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		608E413149C4C96DA8AD73FE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Actifit/Pods-Actifit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Actifit/Pods-Actifit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB47EEC5E283BA609ECC6596 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Actifit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BE27262A211452890020E32D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0AB411211A29B1000E9AEA /* Activity.swift in Sources */,
 				BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */,
-				BE272632211452890020E32D /* AppDelegate.swift in Sources */,
+				BE272632211452890020E32D /* AFAppDelegate.swift in Sources */,
+				BE0AB413211A2C89000E9AEA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +376,7 @@
 		};
 		BE272641211452940020E32D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9C0610DDDC898B29A3927DD /* Pods-Actifit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -296,6 +396,7 @@
 		};
 		BE272642211452940020E32D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BF616C1E455A6E6AD074981 /* Pods-Actifit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

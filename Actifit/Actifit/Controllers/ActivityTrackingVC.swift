@@ -12,7 +12,6 @@ class ActivityTrackingVC: UIViewController {
     
     //MARK: OUTLETS
     
-    @IBOutlet weak var activityStateLabel : UILabel!
     @IBOutlet weak var stepsCountLabel : UILabel!
     @IBOutlet weak var postToSteemitBtn : UIButton!
     @IBOutlet weak var viewTrackingHistoryBtn : UIButton!
@@ -115,7 +114,6 @@ extension ActivityTrackingVC {
         switch CMMotionActivityManager.authorizationStatus() {
         case CMAuthorizationStatus.denied:
             onStop()
-            activityStateLabel.text = "Not available"
             stepsCountLabel.text = "Not available"
         default:break
         }
@@ -126,7 +124,7 @@ extension ActivityTrackingVC {
         if CMMotionActivityManager.isActivityAvailable() {
             startTrackingActivityType()
         } else {
-            activityStateLabel.text = "Not available"
+            print("Not available")
         }
         
         if CMPedometer.isStepCountingAvailable() {
@@ -161,13 +159,13 @@ extension ActivityTrackingVC {
             guard let activity = activity else { return }
             DispatchQueue.main.async {
                 if activity.walking {
-                    self?.activityStateLabel.text = "Walking"
+                    print("Walking")
                 } else if activity.stationary {
-                    self?.activityStateLabel.text = "Stationary"
+                    print("Stationary")
                 } else if activity.running {
-                    self?.activityStateLabel.text = "Running"
+                    print("Running")
                 } else if activity.automotive {
-                    self?.activityStateLabel.text = "Automotive"
+                    print("Automotive")
                 }
             }
         }

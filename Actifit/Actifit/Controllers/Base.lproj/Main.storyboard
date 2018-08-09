@@ -84,24 +84,15 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity State" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vrs-TM-hAx">
-                                <rect key="frame" x="20" y="544.5" width="335" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Vrs-TM-hAx" firstAttribute="top" secondItem="mfV-kE-clG" secondAttribute="bottom" constant="20" id="7gC-6Q-E3g"/>
                             <constraint firstItem="hSy-ZB-wJo" firstAttribute="top" secondItem="cxL-Ia-eyH" secondAttribute="top" id="NBX-6c-o2s"/>
                             <constraint firstItem="YxB-yw-Aiv" firstAttribute="leading" secondItem="r8C-ak-wxx" secondAttribute="leading" constant="20" id="TnR-h2-xcx"/>
                             <constraint firstItem="r8C-ak-wxx" firstAttribute="trailing" secondItem="YxB-yw-Aiv" secondAttribute="trailing" constant="20" id="Trs-oB-0vM"/>
                             <constraint firstItem="mfV-kE-clG" firstAttribute="top" secondItem="YxB-yw-Aiv" secondAttribute="bottom" constant="20" id="W2m-7n-evE"/>
-                            <constraint firstItem="r8C-ak-wxx" firstAttribute="trailing" secondItem="Vrs-TM-hAx" secondAttribute="trailing" constant="20" id="Wha-ld-7eI"/>
                             <constraint firstItem="EkX-Uf-0oF" firstAttribute="centerY" secondItem="cxL-Ia-eyH" secondAttribute="centerY" id="YKK-2B-P1B"/>
                             <constraint firstItem="r8C-ak-wxx" firstAttribute="trailing" secondItem="mfV-kE-clG" secondAttribute="trailing" id="ilF-TI-0sm"/>
-                            <constraint firstItem="Vrs-TM-hAx" firstAttribute="leading" secondItem="r8C-ak-wxx" secondAttribute="leading" constant="20" id="oea-QG-PRT"/>
                             <constraint firstItem="EkX-Uf-0oF" firstAttribute="centerX" secondItem="cxL-Ia-eyH" secondAttribute="centerX" id="qJC-ZF-dhO"/>
                             <constraint firstItem="YxB-yw-Aiv" firstAttribute="top" secondItem="EkX-Uf-0oF" secondAttribute="bottom" constant="20" id="tKa-og-0c0"/>
                             <constraint firstItem="hSy-ZB-wJo" firstAttribute="trailing" secondItem="r8C-ak-wxx" secondAttribute="trailing" id="v2j-Dx-Scf"/>
@@ -112,7 +103,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="W6N-6k-g0H"/>
                     <connections>
-                        <outlet property="activityStateLabel" destination="Vrs-TM-hAx" id="Ynu-8E-SxM"/>
                         <outlet property="postToSteemitBtn" destination="ibL-xk-mDF" id="XqP-6M-CCf"/>
                         <outlet property="stepsCountLabel" destination="YxB-yw-Aiv" id="ID8-Fd-IKe"/>
                         <outlet property="viewDailyLeaderboardBtn" destination="V4O-6A-5Vw" id="q3z-FH-48b"/>

@@ -13,6 +13,7 @@
 		BE0AB423211BF45A000E9AEA /* TrackingHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB422211BF45A000E9AEA /* TrackingHistoryVC.swift */; };
 		BE0AB426211BF641000E9AEA /* ActivityHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB425211BF641000E9AEA /* ActivityHistoryCell.swift */; };
 		BE0AB428211BF64D000E9AEA /* StoryboardInstantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB427211BF64D000E9AEA /* StoryboardInstantiation.swift */; };
+		BE0AB433211CE5EA000E9AEA /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */; };
 		BE272632211452890020E32D /* AFAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272631211452890020E32D /* AFAppDelegate.swift */; };
 		BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272633211452890020E32D /* ActivityTrackingVC.swift */; };
 		BE272637211452890020E32D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE272635211452890020E32D /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		BE0AB422211BF45A000E9AEA /* TrackingHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingHistoryVC.swift; sourceTree = "<group>"; };
 		BE0AB425211BF641000E9AEA /* ActivityHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHistoryCell.swift; sourceTree = "<group>"; };
 		BE0AB427211BF64D000E9AEA /* StoryboardInstantiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiation.swift; sourceTree = "<group>"; };
+		BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		BE27262E211452890020E32D /* Actifit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Actifit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE272631211452890020E32D /* AFAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFAppDelegate.swift; sourceTree = "<group>"; };
 		BE272633211452890020E32D /* ActivityTrackingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTrackingVC.swift; sourceTree = "<group>"; };
@@ -110,6 +112,14 @@
 			path = "Inline Helpers";
 			sourceTree = "<group>";
 		};
+		BE0AB431211CE5CF000E9AEA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		BE272625211452890020E32D = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +141,7 @@
 		BE272630211452890020E32D /* Actifit */ = {
 			isa = PBXGroup;
 			children = (
+				BE0AB431211CE5CF000E9AEA /* Extensions */,
 				BE0AB429211BF651000E9AEA /* Inline Helpers */,
 				BE0AB414211A2C8D000E9AEA /* AppDelegate */,
 				BE0AB424211BF625000E9AEA /* Views */,
@@ -257,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE0AB411211A29B1000E9AEA /* Activity.swift in Sources */,
+				BE0AB433211CE5EA000E9AEA /* UIDevice+Extension.swift in Sources */,
 				BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */,
 				BE272632211452890020E32D /* AFAppDelegate.swift in Sources */,
 				BE0AB428211BF64D000E9AEA /* StoryboardInstantiation.swift in Sources */,

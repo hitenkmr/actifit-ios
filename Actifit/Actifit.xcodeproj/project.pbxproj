@@ -10,6 +10,9 @@
 		5F912D2BD619DE8C3FE85463 /* Pods_Actifit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDABFA1F3E07474B668EE1A /* Pods_Actifit.framework */; };
 		BE0AB411211A29B1000E9AEA /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB410211A29B1000E9AEA /* Activity.swift */; };
 		BE0AB413211A2C89000E9AEA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB412211A2C89000E9AEA /* Constants.swift */; };
+		BE0AB423211BF45A000E9AEA /* TrackingHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB422211BF45A000E9AEA /* TrackingHistoryVC.swift */; };
+		BE0AB426211BF641000E9AEA /* ActivityHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB425211BF641000E9AEA /* ActivityHistoryCell.swift */; };
+		BE0AB428211BF64D000E9AEA /* StoryboardInstantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB427211BF64D000E9AEA /* StoryboardInstantiation.swift */; };
 		BE272632211452890020E32D /* AFAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272631211452890020E32D /* AFAppDelegate.swift */; };
 		BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272633211452890020E32D /* ActivityTrackingVC.swift */; };
 		BE272637211452890020E32D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE272635211452890020E32D /* Main.storyboard */; };
@@ -23,6 +26,9 @@
 		B9C0610DDDC898B29A3927DD /* Pods-Actifit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Actifit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Actifit/Pods-Actifit.debug.xcconfig"; sourceTree = "<group>"; };
 		BE0AB410211A29B1000E9AEA /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		BE0AB412211A2C89000E9AEA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BE0AB422211BF45A000E9AEA /* TrackingHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingHistoryVC.swift; sourceTree = "<group>"; };
+		BE0AB425211BF641000E9AEA /* ActivityHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHistoryCell.swift; sourceTree = "<group>"; };
+		BE0AB427211BF64D000E9AEA /* StoryboardInstantiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiation.swift; sourceTree = "<group>"; };
 		BE27262E211452890020E32D /* Actifit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Actifit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE272631211452890020E32D /* AFAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFAppDelegate.swift; sourceTree = "<group>"; };
 		BE272633211452890020E32D /* ActivityTrackingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTrackingVC.swift; sourceTree = "<group>"; };
@@ -83,8 +89,25 @@
 			children = (
 				BE272635211452890020E32D /* Main.storyboard */,
 				BE272633211452890020E32D /* ActivityTrackingVC.swift */,
+				BE0AB422211BF45A000E9AEA /* TrackingHistoryVC.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BE0AB424211BF625000E9AEA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE0AB425211BF641000E9AEA /* ActivityHistoryCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BE0AB429211BF651000E9AEA /* Inline Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BE0AB427211BF64D000E9AEA /* StoryboardInstantiation.swift */,
+			);
+			path = "Inline Helpers";
 			sourceTree = "<group>";
 		};
 		BE272625211452890020E32D = {
@@ -108,7 +131,9 @@
 		BE272630211452890020E32D /* Actifit */ = {
 			isa = PBXGroup;
 			children = (
+				BE0AB429211BF651000E9AEA /* Inline Helpers */,
 				BE0AB414211A2C8D000E9AEA /* AppDelegate */,
+				BE0AB424211BF625000E9AEA /* Views */,
 				BE0AB415211A302D000E9AEA /* Controllers */,
 				BE0AB40F211A2993000E9AEA /* Models */,
 				BE272638211452940020E32D /* Assets.xcassets */,
@@ -234,7 +259,10 @@
 				BE0AB411211A29B1000E9AEA /* Activity.swift in Sources */,
 				BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */,
 				BE272632211452890020E32D /* AFAppDelegate.swift in Sources */,
+				BE0AB428211BF64D000E9AEA /* StoryboardInstantiation.swift in Sources */,
 				BE0AB413211A2C89000E9AEA /* Constants.swift in Sources */,
+				BE0AB423211BF45A000E9AEA /* TrackingHistoryVC.swift in Sources */,
+				BE0AB426211BF641000E9AEA /* ActivityHistoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

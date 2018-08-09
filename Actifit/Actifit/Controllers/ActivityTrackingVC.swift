@@ -41,6 +41,8 @@ class ActivityTrackingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //resetting the start date when wiew appears
+        self.startDate = Date()
         self.navigationController?.isNavigationBarHidden = true
         self.setTotalStepsCountsUpFromMidnight()
         self.onStart()
@@ -48,6 +50,7 @@ class ActivityTrackingVC: UIViewController {
   
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        //resetting total steps count(of global variable) from midnight to 0
         self.upToPreviousSessionStepsfromTodayMidnight = 0
         self.onStop()
     }
@@ -59,7 +62,7 @@ class ActivityTrackingVC: UIViewController {
     }
     
     @IBAction func viewTrackingHistoryBtnAction(_ sender : UIButton) {
-
+        self.navigationController?.pushViewController(TrackingHistoryVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
     }
     
     @IBAction func viewDailyLeaderboardBtnAction(_ sender : UIButton) {

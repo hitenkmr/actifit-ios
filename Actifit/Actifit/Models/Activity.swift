@@ -33,6 +33,7 @@ class Activity : Object {
         }
     }
     
+    //get all saved activities
     class func all() -> [Activity] {
         var contents = [Activity]()
         if let realm = AppDelegate.defaultRealm() {
@@ -44,6 +45,7 @@ class Activity : Object {
         return contents
     }
     
+    //clear activity history
     class func deleteAll() {
         var config = Realm.Configuration.defaultConfiguration
         config.schemaVersion = 1 //increase schemaversion if properties changed
@@ -61,6 +63,7 @@ class Activity : Object {
         }
     }
     
+    //update the activity(steps count)
     func update(date :Date, steps : Int) {
         autoreleasepool {
             if let realm = AppDelegate.defaultRealm() {

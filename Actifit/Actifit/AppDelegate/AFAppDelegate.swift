@@ -8,6 +8,11 @@
 import UIKit
 import RealmSwift
 
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+import AppCenterDistribute
+
 @UIApplicationMain
 class AFAppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,7 +20,10 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        //MARK: Start AppCenter services
+        MSAppCenter.start(AppCenter.SecretKey, withServices:[ MSAnalytics.self, MSCrashes.self, MSDistribute.self])
+
         return true
     }
 

@@ -10,11 +10,6 @@ import UIKit
 import RealmSwift
 import Realm
 
-struct ActivityKeys {
-    static let date = "date"
-    static let steps = "steps"
-}
-
 class Activity : Object {
     
     @objc dynamic var date: Date = Date()

@@ -3,6 +3,8 @@ use_frameworks!
 
 target 'Actifit' do
 pod 'RealmSwift', '3.0'
+pod 'AppCenter'
+pod 'AppCenter/Distribute'
 end
 
 

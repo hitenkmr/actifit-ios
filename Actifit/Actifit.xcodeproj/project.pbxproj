@@ -15,6 +15,7 @@
 		BE0AB428211BF64D000E9AEA /* StoryboardInstantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB427211BF64D000E9AEA /* StoryboardInstantiation.swift */; };
 		BE0AB433211CE5EA000E9AEA /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */; };
 		BE0AB435211EB22F000E9AEA /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB434211EB22F000E9AEA /* Structs.swift */; };
+		BE0AB442211F68A3000E9AEA /* PostToSteemitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB441211F68A3000E9AEA /* PostToSteemitVC.swift */; };
 		BE272632211452890020E32D /* AFAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272631211452890020E32D /* AFAppDelegate.swift */; };
 		BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272633211452890020E32D /* ActivityTrackingVC.swift */; };
 		BE272637211452890020E32D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE272635211452890020E32D /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		BE0AB427211BF64D000E9AEA /* StoryboardInstantiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiation.swift; sourceTree = "<group>"; };
 		BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		BE0AB434211EB22F000E9AEA /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		BE0AB441211F68A3000E9AEA /* PostToSteemitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostToSteemitVC.swift; sourceTree = "<group>"; };
 		BE27262E211452890020E32D /* Actifit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Actifit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE272631211452890020E32D /* AFAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFAppDelegate.swift; sourceTree = "<group>"; };
 		BE272633211452890020E32D /* ActivityTrackingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTrackingVC.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				BE272635211452890020E32D /* Main.storyboard */,
 				BE272633211452890020E32D /* ActivityTrackingVC.swift */,
 				BE0AB422211BF45A000E9AEA /* TrackingHistoryVC.swift */,
+				BE0AB441211F68A3000E9AEA /* PostToSteemitVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -241,11 +244,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Actifit/Pods-Actifit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
@@ -306,6 +311,7 @@
 				BE0AB413211A2C89000E9AEA /* Constants.swift in Sources */,
 				BE0AB423211BF45A000E9AEA /* TrackingHistoryVC.swift in Sources */,
 				BE0AB426211BF641000E9AEA /* ActivityHistoryCell.swift in Sources */,
+				BE0AB442211F68A3000E9AEA /* PostToSteemitVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

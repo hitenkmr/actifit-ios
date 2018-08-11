@@ -5,6 +5,7 @@ target 'Actifit' do
 pod 'RealmSwift', '3.0'
 pod 'AppCenter'
 pod 'AppCenter/Distribute'
+pod 'IQKeyboardManagerSwift'
 end
 
 

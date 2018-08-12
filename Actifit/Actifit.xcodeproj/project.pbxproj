@@ -16,6 +16,11 @@
 		BE0AB433211CE5EA000E9AEA /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */; };
 		BE0AB435211EB22F000E9AEA /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB434211EB22F000E9AEA /* Structs.swift */; };
 		BE0AB442211F68A3000E9AEA /* PostToSteemitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0AB441211F68A3000E9AEA /* PostToSteemitVC.swift */; };
+		BE222CE52120BAAB00AD025F /* AFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CE42120BAAB00AD025F /* AFTextField.swift */; };
+		BE222CE72120BC2E00AD025F /* ConstaintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CE62120BC2E00AD025F /* ConstaintMaker.swift */; };
+		BE222CE92120C17A00AD025F /* AFTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CE82120C17A00AD025F /* AFTextView.swift */; };
+		BE222CEB2120C8E300AD025F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CEA2120C8E300AD025F /* String+Extension.swift */; };
+		BE222CED2120C8F600AD025F /* AttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CEC2120C8F600AD025F /* AttributedString+Extension.swift */; };
 		BE272632211452890020E32D /* AFAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272631211452890020E32D /* AFAppDelegate.swift */; };
 		BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272633211452890020E32D /* ActivityTrackingVC.swift */; };
 		BE272637211452890020E32D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE272635211452890020E32D /* Main.storyboard */; };
@@ -35,6 +40,11 @@
 		BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		BE0AB434211EB22F000E9AEA /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		BE0AB441211F68A3000E9AEA /* PostToSteemitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostToSteemitVC.swift; sourceTree = "<group>"; };
+		BE222CE42120BAAB00AD025F /* AFTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFTextField.swift; sourceTree = "<group>"; };
+		BE222CE62120BC2E00AD025F /* ConstaintMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstaintMaker.swift; sourceTree = "<group>"; };
+		BE222CE82120C17A00AD025F /* AFTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFTextView.swift; sourceTree = "<group>"; };
+		BE222CEA2120C8E300AD025F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		BE222CEC2120C8F600AD025F /* AttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedString+Extension.swift"; sourceTree = "<group>"; };
 		BE27262E211452890020E32D /* Actifit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Actifit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE272631211452890020E32D /* AFAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFAppDelegate.swift; sourceTree = "<group>"; };
 		BE272633211452890020E32D /* ActivityTrackingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTrackingVC.swift; sourceTree = "<group>"; };
@@ -112,6 +122,9 @@
 		BE0AB429211BF651000E9AEA /* Inline Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				BE222CE62120BC2E00AD025F /* ConstaintMaker.swift */,
+				BE222CE42120BAAB00AD025F /* AFTextField.swift */,
+				BE222CE82120C17A00AD025F /* AFTextView.swift */,
 				BE0AB427211BF64D000E9AEA /* StoryboardInstantiation.swift */,
 			);
 			path = "Inline Helpers";
@@ -121,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */,
+				BE222CEA2120C8E300AD025F /* String+Extension.swift */,
+				BE222CEC2120C8F600AD025F /* AttributedString+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -306,11 +321,16 @@
 				BE0AB411211A29B1000E9AEA /* Activity.swift in Sources */,
 				BE0AB433211CE5EA000E9AEA /* UIDevice+Extension.swift in Sources */,
 				BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */,
+				BE222CED2120C8F600AD025F /* AttributedString+Extension.swift in Sources */,
 				BE272632211452890020E32D /* AFAppDelegate.swift in Sources */,
 				BE0AB428211BF64D000E9AEA /* StoryboardInstantiation.swift in Sources */,
+				BE222CE92120C17A00AD025F /* AFTextView.swift in Sources */,
 				BE0AB413211A2C89000E9AEA /* Constants.swift in Sources */,
+				BE222CEB2120C8E300AD025F /* String+Extension.swift in Sources */,
+				BE222CE52120BAAB00AD025F /* AFTextField.swift in Sources */,
 				BE0AB423211BF45A000E9AEA /* TrackingHistoryVC.swift in Sources */,
 				BE0AB426211BF641000E9AEA /* ActivityHistoryCell.swift in Sources */,
+				BE222CE72120BC2E00AD025F /* ConstaintMaker.swift in Sources */,
 				BE0AB442211F68A3000E9AEA /* PostToSteemitVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,7 @@ import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 import AppCenterDistribute
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AFAppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,8 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        IQKeyboardManager.shared.enable = true
 
         //MARK: Start AppCenter services
         MSAppCenter.start(AppCenter.SecretKey, withServices:[ MSAnalytics.self, MSCrashes.self, MSDistribute.self])

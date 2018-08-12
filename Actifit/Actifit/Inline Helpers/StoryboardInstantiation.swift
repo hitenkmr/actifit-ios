@@ -2,9 +2,9 @@
 //  StoryboardInstantiation.swift
 //  Actifit
 //
-//  Created by Hitender kumar on 09/08/18.
+//  Created by Hitender kumar on 12/08/18.
 //  Copyright © 2018 Hitender kumar. All rights reserved.
-//
+//  Copyright © 2018 Hitender kumar. All rights reserved.
 
 import UIKit
 

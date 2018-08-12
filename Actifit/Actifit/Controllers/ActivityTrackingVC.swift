@@ -57,7 +57,7 @@ class ActivityTrackingVC: UIViewController {
     //MARK: INTERFACE BUILDER ACTIONS
     
     @IBAction func postToSteemitBtnAction(_ sender : UIButton) {
-        
+        self.navigationController?.pushViewController(PostToSteemitVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
     }
     
     @IBAction func viewTrackingHistoryBtnAction(_ sender : UIButton) {

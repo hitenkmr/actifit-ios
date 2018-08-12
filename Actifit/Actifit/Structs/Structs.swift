@@ -38,6 +38,23 @@ struct Messages {
     static let current_workout_going_charity = "Your current activity rewards will go to charity "
     static let current_workout_settings_based = "based on your settings choice. Are you sure you want to proceed? "
     static let steemit_url = "https://www.steemit.com/"
+    
+    //for textfields
+    static let Required = "Required"
+    static let IncorrectEmail = "Invalid email address"
+    static let InvalidUsername = "Invalid username"
+    static let PasswordTooShort = "Password is too short (minimum is 8 characters)"
+    static let UsernameTooShort = "Username is too short (minimum is 8 characters)"
+    static let PasswordCntn1Nmbr = "Password should contain at least one number"
+    static let SmthngWntWrng = "Something went wrong"
+    static let InternalServerError = "Whoa! We encountered an error!"
+    static let InstructionsToResetEmail = "You will receive an email with instructions on how to reset your password in a few minutes"
+    static let NoInternet = "The Internet connection appears to be offline"
+    static let EmailNotFound = "Email not found"
+    static let ReferralCodeApplied = "Referral code successfully applied"
+    static let EnterReferralCode = "Enter referral code"
+    static let UnauthorizedAccess = "Unauthorized access"
+    static let ForgotPasswordInstructions = "Instructions to reset password has been send to this email address."
 }
 
 //MARK: AppCenter Secrets

@@ -32,7 +32,17 @@ class PostToSteemitVC: UIViewController {
     @IBOutlet weak var postTagsTextViewLineLabel  : UIView!
     @IBOutlet weak var postContentTextViewLineLabel  : UIView!
 
-
+    var currentTextField : AFTextField?
+    
+    lazy var todayActivity = {
+        return Activity.all().first(where: {$0.date == self.todayStartDate()})
+    }()
+    
+    lazy var currentUser = {
+        return User.current()
+    }()
+    
+    
     //MARK: VIEW LIFE CYCLE
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -41,6 +51,18 @@ class PostToSteemitVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //show today activity steps count
+        if let activity = todayActivity {
+            self.activityCountLabel.text = "\(activity.steps)"
+        }
+        
+        //show current user steemit username and private posting key
+        if let currentUser = self.currentUser {
+            self.steemitUsernameTextField.text = currentUser.steemit_username
+            self.steemitPostingPrivateKeyTextField.text = currentUser.private_posting_key
+        }
+        
         self.postTitleTextView.delegate = self
         self.postTagsTextView.delegate = self
         self.postContentTextView.delegate = self
@@ -50,12 +72,16 @@ class PostToSteemitVC: UIViewController {
         self.postContentTextView.heightConstraint = self.postContentTextViewHeightConstraint
         self.postTitleTextView.heightConstraint = self.postTitleTextViewHeightConstraint
         self.postTagsTextView.heightConstraint = self.postTagsTextViewHeightConstraint
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+       self.registerTextFieldTextChangeNotification()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeTextFieldTextChangeNotification()
     }
     
     //MARK: INTERFACE BUILDER ACTIONS
@@ -69,7 +95,53 @@ class PostToSteemitVC: UIViewController {
     }
     
     @IBAction func postToSteemitBtnAction(_ sender : UIButton) {
+        // check minimum steps count required to post the activity
+        var stepsCount = 1100
+        if let activity = self.todayActivity {
+            stepsCount = activity.steps
+        }
+        if stepsCount < 1000 {
+            self.showAlertWith(title: nil, message: Messages.error_minimun_activity)
+            return
+        }
         
+        // check post content minimum words count to post the activity
+        let components = (self.postContentTextView.text ?? "").components(separatedBy: .whitespacesAndNewlines)
+        let postContentWordsArray = components.filter { !$0.isEmpty }
+        if postContentWordsArray.count < 30 {
+            self.showAlertWith(title: nil, message: Messages.error_post_content_word_count )
+            return
+        }
+    }
+    
+    //MARK: HELPERS
+    
+    //returns current day date from midnight
+    func todayStartDate() -> Date {
+        //For Start Date
+        var calendar = NSCalendar.current
+        calendar.timeZone = NSTimeZone.local
+        let dateAtMidnight = calendar.startOfDay(for: Date())
+        return dateAtMidnight
+    }
+    
+    @objc private func txtFieldTextDidChange(){
+        if let currentUser = self.currentUser {
+            //update user saved username and private posting key
+            currentUser.updateUser(steemit_username: self.steemitUsernameTextField.text ?? "", private_posting_key: self.steemitPostingPrivateKeyTextField.text ?? "")
+        } else {
+            //save user username and private posting key
+            User.saveWith(info: [UserKeys.steemit_username : self.steemitUsernameTextField.text ?? "", UserKeys.private_posting_key : self.steemitPostingPrivateKeyTextField.text ?? ""])
+        }
+        self.currentUser = User.current()
+    }
+    
+    private func registerTextFieldTextChangeNotification(){
+        NotificationCenter.default.addObserver(self, selector:#selector(txtFieldTextDidChange), name:NSNotification.Name.UITextFieldTextDidChange, object: nil)
+    }
+    
+    private func removeTextFieldTextChangeNotification(){
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
     }
 }
 
@@ -99,5 +171,18 @@ extension PostToSteemitVC : UITextViewDelegate{
                 self.postContentTextViewLineLabel.backgroundColor = UIColor.lightGray
             }
         }
+    }
+}
+
+extension PostToSteemitVC : UITextFieldDelegate {
+    
+    //MARK: UITextFieldDelegate
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.currentTextField = textField as? AFTextField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
     }
 }

@@ -21,6 +21,8 @@
 		BE222CE92120C17A00AD025F /* AFTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CE82120C17A00AD025F /* AFTextView.swift */; };
 		BE222CEB2120C8E300AD025F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CEA2120C8E300AD025F /* String+Extension.swift */; };
 		BE222CED2120C8F600AD025F /* AttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CEC2120C8F600AD025F /* AttributedString+Extension.swift */; };
+		BE222CEF212362B600AD025F /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CEE212362B600AD025F /* UIViewController+Additions.swift */; };
+		BE222CF12123652100AD025F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CF02123652100AD025F /* User.swift */; };
 		BE272632211452890020E32D /* AFAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272631211452890020E32D /* AFAppDelegate.swift */; };
 		BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272633211452890020E32D /* ActivityTrackingVC.swift */; };
 		BE272637211452890020E32D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE272635211452890020E32D /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 		BE222CE82120C17A00AD025F /* AFTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFTextView.swift; sourceTree = "<group>"; };
 		BE222CEA2120C8E300AD025F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		BE222CEC2120C8F600AD025F /* AttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedString+Extension.swift"; sourceTree = "<group>"; };
+		BE222CEE212362B600AD025F /* UIViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
+		BE222CF02123652100AD025F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BE27262E211452890020E32D /* Actifit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Actifit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE272631211452890020E32D /* AFAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFAppDelegate.swift; sourceTree = "<group>"; };
 		BE272633211452890020E32D /* ActivityTrackingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTrackingVC.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				BE0AB410211A29B1000E9AEA /* Activity.swift */,
+				BE222CF02123652100AD025F /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 		BE0AB431211CE5CF000E9AEA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BE222CEE212362B600AD025F /* UIViewController+Additions.swift */,
 				BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */,
 				BE222CEA2120C8E300AD025F /* String+Extension.swift */,
 				BE222CEC2120C8F600AD025F /* AttributedString+Extension.swift */,
@@ -321,8 +327,10 @@
 				BE0AB411211A29B1000E9AEA /* Activity.swift in Sources */,
 				BE0AB433211CE5EA000E9AEA /* UIDevice+Extension.swift in Sources */,
 				BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */,
+				BE222CEF212362B600AD025F /* UIViewController+Additions.swift in Sources */,
 				BE222CED2120C8F600AD025F /* AttributedString+Extension.swift in Sources */,
 				BE272632211452890020E32D /* AFAppDelegate.swift in Sources */,
+				BE222CF12123652100AD025F /* User.swift in Sources */,
 				BE0AB428211BF64D000E9AEA /* StoryboardInstantiation.swift in Sources */,
 				BE222CE92120C17A00AD025F /* AFTextView.swift in Sources */,
 				BE0AB413211A2C89000E9AEA /* Constants.swift in Sources */,

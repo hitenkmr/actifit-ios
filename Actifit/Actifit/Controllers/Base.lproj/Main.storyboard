@@ -312,7 +312,7 @@
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="My Actifit Report Card: August 12 2018 " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IGs-Jm-WaD" customClass="AFTextView" customModule="Actifit" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="231" width="354.5" height="30"/>
-                                                <color key="backgroundColor" red="0.14117647059999999" green="0.66666666669999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="m4Q-aE-VCa"/>
                                                 </constraints>
@@ -393,7 +393,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXe-XP-OgA">
                                                         <rect key="frame" x="88" y="0.0" width="20" height="17"/>
@@ -421,7 +421,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0O5-n8-BMR">
                                                         <rect key="frame" x="204" y="0.0" width="20" height="17"/>
@@ -449,7 +449,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xM-Q5-fCk">
                                                         <rect key="frame" x="334" y="0.0" width="20" height="17"/>
@@ -482,7 +482,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aK6-nD-B5c">
                                                         <rect key="frame" x="88" y="0.0" width="20" height="17"/>
@@ -510,7 +510,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfC-2c-2uA">
                                                         <rect key="frame" x="204" y="0.0" width="20" height="17"/>
@@ -538,7 +538,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QM2-ha-MnO">
                                                         <rect key="frame" x="334" y="0.0" width="20" height="17"/>
@@ -559,7 +559,7 @@
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="actifit" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="W59-JE-beC" customClass="AFTextView" customModule="Actifit" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="594" width="354.5" height="30"/>
-                                                <color key="backgroundColor" red="0.14117647059999999" green="0.66666666669999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="WQP-ka-Cxe"/>
                                                 </constraints>
@@ -568,7 +568,7 @@
                                             </textView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4s-YV-3gw" userLabel="seperator">
                                                 <rect key="frame" x="10" y="625" width="354.5" height="1"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="Muo-AF-fJz"/>
                                                 </constraints>
@@ -581,7 +581,7 @@
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5aq-Rd-udP" customClass="AFTextView" customModule="Actifit" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="683" width="354.5" height="30"/>
-                                                <color key="backgroundColor" red="0.14117647059999999" green="0.66666666669999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="HYN-jz-sFB"/>
                                                 </constraints>
@@ -590,7 +590,7 @@
                                             </textView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fv2-cX-AiQ" userLabel="seperator">
                                                 <rect key="frame" x="10" y="714" width="354.5" height="1"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="GPQ-rO-BvD"/>
                                                 </constraints>
@@ -715,10 +715,13 @@
                         <outlet property="heightTextField" destination="Vhx-7b-iwJ" id="G59-aO-oOo"/>
                         <outlet property="postContentTextView" destination="5aq-Rd-udP" id="kIo-rK-RX5"/>
                         <outlet property="postContentTextViewHeightConstraint" destination="HYN-jz-sFB" id="Kr8-gG-HJJ"/>
+                        <outlet property="postContentTextViewLineLabel" destination="Fv2-cX-AiQ" id="Ou2-CU-QaA"/>
                         <outlet property="postTagsTextView" destination="W59-JE-beC" id="NlS-8I-mv9"/>
                         <outlet property="postTagsTextViewHeightConstraint" destination="WQP-ka-Cxe" id="mO9-xB-qsp"/>
+                        <outlet property="postTagsTextViewLineLabel" destination="U4s-YV-3gw" id="Q6f-5u-IL3"/>
                         <outlet property="postTitleTextView" destination="IGs-Jm-WaD" id="uQJ-fv-fK1"/>
                         <outlet property="postTitleTextViewHeightConstraint" destination="m4Q-aE-VCa" id="8Kr-RF-LkZ"/>
+                        <outlet property="postTitleTextViewLineLabel" destination="136-bE-U7D" id="uhb-8h-f7m"/>
                         <outlet property="postToSteemitBtn" destination="MM6-tI-76h" id="gVF-Eu-MxS"/>
                         <outlet property="steemitPostingPrivateKeyTextField" destination="n1J-f7-Wsz" id="TvH-Bq-f5u"/>
                         <outlet property="steemitUsernameTextField" destination="05g-KF-R8D" id="ao9-2H-aub"/>

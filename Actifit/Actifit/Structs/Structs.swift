@@ -37,6 +37,9 @@ struct Messages {
     static let word_plural_label = "words"
     static let current_workout_going_charity = "Your current activity rewards will go to charity "
     static let current_workout_settings_based = "based on your settings choice. Are you sure you want to proceed? "
+    static let error_minimun_activity = "You have not reached the minimun 1,000 activity yet"
+    static let error_post_content_word_count = "Write minimun 30 words to post the activity"
+    
     static let steemit_url = "https://www.steemit.com/"
     
     //for textfields
@@ -66,4 +69,9 @@ struct AppCenter {
 struct ActivityKeys {
     static let date = "date"
     static let steps = "steps"
+}
+
+struct UserKeys {
+    static let steemit_username = "steemit_username"
+    static let private_posting_key = "private_posting_key"
 }

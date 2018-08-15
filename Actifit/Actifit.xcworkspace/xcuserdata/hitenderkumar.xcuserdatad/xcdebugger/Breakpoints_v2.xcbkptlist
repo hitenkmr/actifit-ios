@@ -2,4 +2,54 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Actifit/Controllers/PostToSteemitVC.swift"
+            timestampString = "555984896.211478"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "postActvityWith(json:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;, __ObjC.HTTPURLResponse) -&gt; () in Actifit.PostToSteemitVC.postActvityWith(json: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
+                  moduleName = "Actifit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/hits/Personal/Hitender/Projects/MyGithub/actifit-ios/Actifit/Actifit/Controllers/PostToSteemitVC.swift"
+                  timestampString = "555984897.453066"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__ObjC.NSError) -&gt; () in Actifit.PostToSteemitVC.postActvityWith(json: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
+                  moduleName = "Actifit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/hits/Personal/Hitender/Projects/MyGithub/actifit-ios/Actifit/Actifit/Controllers/PostToSteemitVC.swift"
+                  timestampString = "555984897.4571919"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "219"
+                  endingLineNumber = "219"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

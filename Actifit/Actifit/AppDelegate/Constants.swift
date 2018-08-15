@@ -11,11 +11,12 @@ import UIKit
  
 //MARK: Singletons
 
-let MainBundle  =  Bundle.main
-let Application = UIApplication.shared
-let AppDelegate  = Application.delegate as! AFAppDelegate
-let DeviceType = AFTDeviceType()
-let ISSimulator   = (UIDevice.current.isSimulator)
+let MainBundle         =  Bundle.main
+let Application        = UIApplication.shared
+let AppDelegate        = Application.delegate as! AFAppDelegate
+let DeviceType         = AFTDeviceType()
+let ISSimulator        = (UIDevice.current.isSimulator)
+let APIMaster          = API.sharedInstance
 
 //MARK: Device
 

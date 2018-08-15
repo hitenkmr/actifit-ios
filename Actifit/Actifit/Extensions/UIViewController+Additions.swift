@@ -2,8 +2,7 @@
 //  UIViewController+Additions.swift
 //  Actifit
 //
-//  Created by Hitender kumar on 19/06/17.
-//  Copyright © 2016 Poplify. All rights reserved.
+//  Created by Hitender kumar on 15/08/18.
 //
 
 import Foundation

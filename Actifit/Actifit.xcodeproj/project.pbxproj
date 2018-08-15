@@ -23,6 +23,12 @@
 		BE222CED2120C8F600AD025F /* AttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CEC2120C8F600AD025F /* AttributedString+Extension.swift */; };
 		BE222CEF212362B600AD025F /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CEE212362B600AD025F /* UIViewController+Additions.swift */; };
 		BE222CF12123652100AD025F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CF02123652100AD025F /* User.swift */; };
+		BE222CF32123798800AD025F /* ActivityTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CF22123798800AD025F /* ActivityTypesView.swift */; };
+		BE222CF621237BDB00AD025F /* ActivityTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CF421237BDB00AD025F /* ActivityTypeTableViewCell.swift */; };
+		BE222CF721237BDB00AD025F /* ActivityTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE222CF521237BDB00AD025F /* ActivityTypeTableViewCell.xib */; };
+		BE222CF921237CE900AD025F /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CF821237CE900AD025F /* UIView+Additions.swift */; };
+		BE222CFD2123829700AD025F /* ActivityTypesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE222CFC2123829700AD025F /* ActivityTypesView.xib */; };
+		BE222D002123A14300AD025F /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE222CFF2123A14300AD025F /* API.swift */; };
 		BE272632211452890020E32D /* AFAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272631211452890020E32D /* AFAppDelegate.swift */; };
 		BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272633211452890020E32D /* ActivityTrackingVC.swift */; };
 		BE272637211452890020E32D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE272635211452890020E32D /* Main.storyboard */; };
@@ -49,6 +55,12 @@
 		BE222CEC2120C8F600AD025F /* AttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedString+Extension.swift"; sourceTree = "<group>"; };
 		BE222CEE212362B600AD025F /* UIViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
 		BE222CF02123652100AD025F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BE222CF22123798800AD025F /* ActivityTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypesView.swift; sourceTree = "<group>"; };
+		BE222CF421237BDB00AD025F /* ActivityTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeTableViewCell.swift; sourceTree = "<group>"; };
+		BE222CF521237BDB00AD025F /* ActivityTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTypeTableViewCell.xib; sourceTree = "<group>"; };
+		BE222CF821237CE900AD025F /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		BE222CFC2123829700AD025F /* ActivityTypesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTypesView.xib; sourceTree = "<group>"; };
+		BE222CFF2123A14300AD025F /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		BE27262E211452890020E32D /* Actifit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Actifit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE272631211452890020E32D /* AFAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFAppDelegate.swift; sourceTree = "<group>"; };
 		BE272633211452890020E32D /* ActivityTrackingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTrackingVC.swift; sourceTree = "<group>"; };
@@ -119,7 +131,11 @@
 		BE0AB424211BF625000E9AEA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE222CF22123798800AD025F /* ActivityTypesView.swift */,
 				BE0AB425211BF641000E9AEA /* ActivityHistoryCell.swift */,
+				BE222CF421237BDB00AD025F /* ActivityTypeTableViewCell.swift */,
+				BE222CF521237BDB00AD025F /* ActivityTypeTableViewCell.xib */,
+				BE222CFC2123829700AD025F /* ActivityTypesView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -138,6 +154,7 @@
 		BE0AB431211CE5CF000E9AEA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BE222CF821237CE900AD025F /* UIView+Additions.swift */,
 				BE222CEE212362B600AD025F /* UIViewController+Additions.swift */,
 				BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */,
 				BE222CEA2120C8E300AD025F /* String+Extension.swift */,
@@ -152,6 +169,14 @@
 				BE0AB434211EB22F000E9AEA /* Structs.swift */,
 			);
 			path = Structs;
+			sourceTree = "<group>";
+		};
+		BE222CFE2123A13A00AD025F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BE222CFF2123A14300AD025F /* API.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		BE272625211452890020E32D = {
@@ -175,6 +200,7 @@
 		BE272630211452890020E32D /* Actifit */ = {
 			isa = PBXGroup;
 			children = (
+				BE222CFE2123A13A00AD025F /* API */,
 				BE0AB436211EB234000E9AEA /* Structs */,
 				BE0AB431211CE5CF000E9AEA /* Extensions */,
 				BE0AB429211BF651000E9AEA /* Inline Helpers */,
@@ -249,8 +275,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE222CF721237BDB00AD025F /* ActivityTypeTableViewCell.xib in Resources */,
 				BE27263C211452940020E32D /* LaunchScreen.storyboard in Resources */,
 				BE272639211452940020E32D /* Assets.xcassets in Resources */,
+				BE222CFD2123829700AD025F /* ActivityTypesView.xib in Resources */,
 				BE272637211452890020E32D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,16 +351,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE222CF921237CE900AD025F /* UIView+Additions.swift in Sources */,
 				BE0AB435211EB22F000E9AEA /* Structs.swift in Sources */,
+				BE222CF621237BDB00AD025F /* ActivityTypeTableViewCell.swift in Sources */,
 				BE0AB411211A29B1000E9AEA /* Activity.swift in Sources */,
 				BE0AB433211CE5EA000E9AEA /* UIDevice+Extension.swift in Sources */,
 				BE272634211452890020E32D /* ActivityTrackingVC.swift in Sources */,
 				BE222CEF212362B600AD025F /* UIViewController+Additions.swift in Sources */,
+				BE222CF32123798800AD025F /* ActivityTypesView.swift in Sources */,
 				BE222CED2120C8F600AD025F /* AttributedString+Extension.swift in Sources */,
 				BE272632211452890020E32D /* AFAppDelegate.swift in Sources */,
 				BE222CF12123652100AD025F /* User.swift in Sources */,
 				BE0AB428211BF64D000E9AEA /* StoryboardInstantiation.swift in Sources */,
 				BE222CE92120C17A00AD025F /* AFTextView.swift in Sources */,
+				BE222D002123A14300AD025F /* API.swift in Sources */,
 				BE0AB413211A2C89000E9AEA /* Constants.swift in Sources */,
 				BE222CEB2120C8E300AD025F /* String+Extension.swift in Sources */,
 				BE222CE52120BAAB00AD025F /* AFTextField.swift in Sources */,

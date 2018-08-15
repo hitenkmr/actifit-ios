@@ -37,9 +37,9 @@ struct Messages {
     static let word_plural_label = "words"
     static let current_workout_going_charity = "Your current activity rewards will go to charity "
     static let current_workout_settings_based = "based on your settings choice. Are you sure you want to proceed? "
-    static let error_minimun_activity = "You have not reached the minimun 1,000 activity yet"
     static let error_post_content_word_count = "Write minimun 30 words to post the activity"
-    
+    static let min_activity_steps_count_error = "You need to take at least "
+
     static let steemit_url = "https://www.steemit.com/"
     
     //for textfields
@@ -71,7 +71,17 @@ struct ActivityKeys {
     static let steps = "steps"
 }
 
+//MARK: User Model Keys
 struct UserKeys {
     static let steemit_username = "steemit_username"
     static let private_posting_key = "private_posting_key"
+}
+
+//MARK: Request HTTP Methods
+struct HttpMethods  {
+    static let HttpMethod_GET = "GET"
+    static let HttpMethod_POST = "POST"
+    static let HttpMethod_DELETE = "DELETE"
+    static let HttpMethod_PUT = "PUT"
+    static let HttpMethod_UPDATE = "UPDATE"
 }

@@ -1,9 +1,8 @@
 //
 //  UIView+Additions.swift
-//  HowNowSchool
+//  Actifit
 //
-//  Created by Hitender Kumar on 20/10/16.
-//  Copyright © 2016 Hitender Kumar. All rights reserved.
+//  Created by Hitender Kumar on 15/08/18.
 //
 
 import UIKit
@@ -120,26 +119,8 @@ extension UIView {
     func getHeight() -> CGFloat{
         return self.frame.size.height
     }
-    
-    //MARK: WEBVIEW CONTENT LOADER HELPERS
-    
-    func loadUrlString(urlStr : String) {
-        if let attachmentViewNib = Bundle.main.loadNibNamed("AttachmentView", owner: AttachmentView(), options: [:]) {
-            if let attachmentView : AttachmentView = attachmentViewNib[0] as? AttachmentView {
-                attachmentView.tag = 987654321
-                attachmentView.loadUrl(urlStr: urlStr)
-                attachmentView.frame = (AppDelegate.window?.frame)!
-                AppDelegate.window?.addSubview(attachmentView)
-                attachmentView.prepareForNewConstraints { (aV) in
-                    aV?.setLeadingSpaceFromSuperView(leadingSpace: 0)
-                    aV?.setTrailingSpaceFromSuperView(trailingSpace: 0)
-                    aV?.setTopSpaceFromSuperView(topSpace: 0)
-                    aV?.setBottomSpaceFromSuperView(bottomSpace: 0)
-                }
-            }
-        }
-    }
-}
+        
+ }
 
 public extension UIView {
     

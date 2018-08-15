@@ -6,9 +6,7 @@
 //
 
 import UIKit
-
-let PostContentMinWordCount = 30
-let PostMinActivityStepsCount = 1000
+import SwiftLoader
 
 class PostToSteemitVC: UIViewController {
     
@@ -45,6 +43,8 @@ class PostToSteemitVC: UIViewController {
         return User.current()
     }()
     
+    var defaultPostTitle = ""
+    
     //MARK: VIEW LIFE CYCLE
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -54,6 +54,7 @@ class PostToSteemitVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.defaultPostTitle = "\(Messages.default_post_title)\(todayDateStringWithFormat(format: "MMMM d yyyy"))"
         //show today activity steps count
         if let activity = todayActivity {
             self.activityCountLabel.text = "\(activity.steps)"
@@ -116,7 +117,7 @@ class PostToSteemitVC: UIViewController {
             stepsCount = activity.steps
         }
         if stepsCount < PostMinActivityStepsCount {
-            self.showAlertWith(title: nil, message: Messages.min_activity_steps_count_error + "\(PostMinActivityStepsCount) " + "steps to post your activity")
+            self.showAlertWith(title: nil, message: Messages.min_activity_steps_count_error + "\(PostMinActivityStepsCount) " + "activity yet.")
             return
         }
         
@@ -124,7 +125,7 @@ class PostToSteemitVC: UIViewController {
         let components = (self.postContentTextView.text ?? "").components(separatedBy: .whitespacesAndNewlines)
         let postContentWordsArray = components.filter { !$0.isEmpty }
         if postContentWordsArray.count < PostContentMinWordCount {
-            self.showAlertWith(title: nil, message: Messages.error_post_content_word_count)
+            self.showAlertWith(title: nil, message: Messages.min_word_count_error + "\(PostContentMinWordCount) " + Messages.word_plural_label)
             return
         }
         
@@ -136,42 +137,35 @@ class PostToSteemitVC: UIViewController {
             }
         }
         
-        //remove more than one "actifit' tags from tags string
-        var tagsString : NSMutableString = NSMutableString.init(string: self.postTagsTextView.text.trimmingCharacters(in: CharacterSet.init(charactersIn: "actifit")))
-        if tagsString.contains("actifit") {
-            tagsString = NSMutableString.init(string: tagsString.replacingOccurrences(of: "actifit", with: ""))
-        }
-        tagsString.insert("actifit", at: 0)
-        
         var activityJson = [String : Any]()
-        activityJson["author"] = self.currentUser?.steemit_username ?? ""
-        activityJson["posting_key"] = self.currentUser?.private_posting_key ?? ""
-        activityJson["title"] = self.postTitleTextView.text
-        activityJson["content"] = self.postContentTextView.text
-        activityJson["tags"] = tagsString
-        activityJson["step_count"] = stepsCount
-        activityJson["activity_type"] = self.activityTypeLabel.text ?? ""
-        activityJson["height"] = self.heightTextField.text ?? ""
-        activityJson["weight"] = self.weightTextField.text ?? ""
-        activityJson["chest"] = self.chestTextField.text ?? ""
-        activityJson["waist"] = self.waistTextField.text ?? ""
-        activityJson["thigs"] = self.thighTextField.text ?? ""
-        activityJson["bodyfat"] = self.bodyFatTextField.text ?? ""
-        activityJson["heightUnit"] = "cm"
-        activityJson["weightUnit"] = "cm"
-        activityJson["heightUnit"] = "cm"
-        activityJson["chestUnit"] = "cm"
-        activityJson["waistUnit"] = "cm"
-        activityJson["thighsUnit"] = "cm"
-        activityJson["appType"] = "iOS"
-        
+        activityJson[PostKeys.author] = self.currentUser?.steemit_username ?? ""
+        activityJson[PostKeys.posting_key] = self.currentUser?.private_posting_key ?? ""
+        activityJson[PostKeys.title] = self.postTitleTextView.text.isEmpty ? self.defaultPostTitle : self.postTitleTextView.text
+        activityJson[PostKeys.content] = self.postContentTextView.text
+        activityJson[PostKeys.tags] = self.tagsString()
+        activityJson[PostKeys.step_count] = stepsCount
+        activityJson[PostKeys.activity_type] = self.activityTypeLabel.text ?? ""
+        activityJson[PostKeys.height] = self.heightTextField.text ?? ""
+        activityJson[PostKeys.weight] = self.weightTextField.text ?? ""
+        activityJson[PostKeys.chest] = self.chestTextField.text ?? ""
+        activityJson[PostKeys.waist] = self.waistTextField.text ?? ""
+        activityJson[PostKeys.thigs] = self.thighTextField.text ?? ""
+        activityJson[PostKeys.bodyfat] = self.bodyFatTextField.text ?? ""
+        activityJson[PostKeys.weightUnit] = "cm"
+        activityJson[PostKeys.heightUnit] = "cm"
+        activityJson[PostKeys.chestUnit] = "cm"
+        activityJson[PostKeys.waistUnit] = "cm"
+        activityJson[PostKeys.thighsUnit] = "cm"
+        activityJson[PostKeys.appType] = AppType
+        activityJson[PostKeys.appVersion] = CurrentAppVersion
         self.postActvityWith(json: activityJson)
-        
     }
     
     //MARK: HELPERS
     
     func applyFinishingTouchToUIElements() {
+        self.postTagsTextView.text = ""
+        self.postTitleTextView.text = defaultPostTitle
         self.postToSteemitBtn.layer.cornerRadius = 4.0
         self.postTitleTextView.delegate = self
         self.postTagsTextView.delegate = self
@@ -184,6 +178,33 @@ class PostToSteemitVC: UIViewController {
         self.postTagsTextView.heightConstraint = self.postTagsTextViewHeightConstraint
     }
     
+    func tagsString() -> String {
+        let tagsString = self.postTagsTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        var tagComponents = [String]()
+        
+        if !tagsString.isEmpty {
+            if tagsString.contains(find: ",") {
+                tagComponents = tagsString.components(separatedBy: ",")
+            } else {
+                tagComponents = tagsString.components(separatedBy: " ")
+            }
+            if tagComponents.contains("actifit") {
+                tagComponents = tagComponents.filter({$0 == "actifit"})
+            }
+            if tagComponents.contains("Actifit") {
+                tagComponents = tagComponents.filter({$0 == "Actifit"})
+            }
+            let string = tagComponents.joined(separator: " ")
+            var trimmedString = NSString.init(string: string).replacingOccurrences(of: "Actifit", with: "")
+            trimmedString = trimmedString.replacingOccurrences(of: "actifit", with: "")
+            tagComponents = trimmedString.components(separatedBy: CharacterSet.init(charactersIn: " "))
+        }
+        tagComponents.insert(("actifit"), at: 0)
+        let newTagString = tagComponents.joined(separator: " ")
+        return newTagString
+    }
+    
     //returns current day date from midnight
     func todayStartDate() -> Date {
         //For Start Date
@@ -194,7 +215,7 @@ class PostToSteemitVC: UIViewController {
     }
     
     func saveOrUpdateUserCredentials() {
-        let userName = (self.steemitUsernameTextField.text ?? "").trimmingCharacters(in: CharacterSet.init(charactersIn: "@"))
+        let userName = (self.steemitUsernameTextField.text ?? "").trimmingCharacters(in: CharacterSet.init(charactersIn: "@")).lowercased()
         let privatePostingKey = self.steemitPostingPrivateKeyTextField.text ?? ""
         
         if let currentUser = self.currentUser {
@@ -208,19 +229,42 @@ class PostToSteemitVC: UIViewController {
         self.currentUser = User.current()
     }
     
+    func todayDateStringWithFormat(format : String) -> String {
+        let dateFormatter = DateFormatter.init()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = NSTimeZone.local
+        return dateFormatter.string(from: Date())
+    }
+    
     //MARK: WEB SERVICES
     
     func postActvityWith(json : [String : Any]) {
-        
-        APIMaster.loginUserWith(info: json, completion: { (json, httpResponse) in
-            
+        SwiftLoader.show(title: Messages.sending_post, animated: true)
+        APIMaster.postActvityWith(info: json, completion: { (json) in
+            DispatchQueue.main.async(execute: {
+                SwiftLoader.hide()
+            })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                if let jsonString = json as? String {
+                    if jsonString == "success" {
+                        self.showAlertWith(title: nil, message: Messages.success_post)
+                    } else {
+                        self.showAlertWith(title: nil, message: Messages.failed_post)
+                    }
+                }
+            })
         }) { (error) in
-            
+            DispatchQueue.main.async(execute: {
+                SwiftLoader.hide()
+            })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                self.showAlertWith(title: nil, message: Messages.failed_post)
+            })
         }
     }
 }
 
-extension PostToSteemitVC : UITextViewDelegate{
+extension PostToSteemitVC : UITextViewDelegate {
     
     //MARK: UITextViewDelegate
     

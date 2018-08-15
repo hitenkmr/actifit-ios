@@ -14,4 +14,16 @@ extension String {
         attributedStr.addAttributes([NSAttributedStringKey.font : font as Any], range: NSRange.init(location: 0, length: attributedStr.length))
         return attributedStr
     }
+    
+    func contains(find: String) -> Bool{
+        return self.range(of: find) != nil
+    }
+    
+    func containsIgnoringCase(find: String) -> Bool{
+        return self.range(of: find, options: .caseInsensitive) != nil
+    }
+    
+    func utf8Data() -> Data {
+        return self.data(using: String.Encoding.utf8)!
+    }
 }

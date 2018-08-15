@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias APICompletionHandler = ((_ info : Any?, _ response : HTTPURLResponse) -> ())?
+typealias APICompletionHandler = ((_ info : Any?) -> ())?
 typealias APIFailureHandler = ((_ error : NSError) -> ())?
 
 public class API : NSObject{
@@ -25,7 +25,7 @@ public class API : NSObject{
     
     //MARK: API callers
     
-    func loginUserWith(info : [String : Any], completion : APICompletionHandler, failure : APIFailureHandler) {
+    func postActvityWith(info : [String : Any], completion : APICompletionHandler, failure : APIFailureHandler) {
         let urlStr = self.serverUrl
         let url = URL.init(string: urlStr)
         var request = URLRequest.init(url: url!)
@@ -46,30 +46,26 @@ public class API : NSObject{
         let session = URLSession.shared
         
         let task = session.dataTask(with: sendRequest, completionHandler: { data, response, error in
-            
             if error == nil{
                 if let data = data {
-                    let urlResponse = response as! HTTPURLResponse
-                    
                     #if DEBUG
                     print("Response json Data is \(data)")
                     #endif
                     //use library to extract data from response json
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: [])
-                        //                        if let infoDict = json as? NSDictionary {
-                        //                            completion!(infoDict, urlResponse)
-                        //                        } else {
-                        //                            completion!(nil, urlResponse)
-                        //                        }
-                        completion!(json, urlResponse)
-                    } catch {
-                        completion!(nil, urlResponse)
+                    if let string = String.init(data: data, encoding: String.Encoding.utf8) {
+                        // do {
+                        // let json = try JSONSerialization.jsonObject(with: data, options: [])
+                        completion!(string)
+                        //} catch {
+                        //}
+                    } else {
+                        completion!(nil)
                     }
+                } else {
+                    completion!(nil)
                 }
-            }
-            else{
-                if failure != nil{
+            } else{
+                if failure != nil {
                     failure!(error! as NSError )
                 }
             }

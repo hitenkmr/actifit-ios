@@ -17,6 +17,7 @@ let AppDelegate        = Application.delegate as! AFAppDelegate
 let DeviceType         = AFTDeviceType()
 let ISSimulator        = (UIDevice.current.isSimulator)
 let APIMaster          = API.sharedInstance
+let APPUser            = User.sharedInstance
 
 //MARK: Device
 

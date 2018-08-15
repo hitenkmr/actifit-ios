@@ -61,7 +61,15 @@ class ActivityTrackingVC: UIViewController {
     //MARK: INTERFACE BUILDER ACTIONS
     
     @IBAction func postToSteemitBtnAction(_ sender : UIButton) {
-        self.navigationController?.pushViewController(PostToSteemitVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
+        var userCanPost = true
+        if let currentUser =  User.current() {
+            userCanPost = abs(currentUser.last_post_date_time_interval) > abs(AppDelegate.todayStartDate().timeIntervalSinceNow)
+        }
+        if userCanPost {
+            self.navigationController?.pushViewController(PostToSteemitVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
+        } else {
+            self.showAlertWith(title: nil, message: Messages.one_post_per_day_error)
+        }
     }
     
     @IBAction func viewTrackingHistoryBtnAction(_ sender : UIButton) {
@@ -76,15 +84,6 @@ class ActivityTrackingVC: UIViewController {
     
     @objc func appMovedToBackground() {
         // self.saveCurrentStepsCounts()
-    }
-    
-    //returns current day date from midnight
-    func todayStartDate() -> Date {
-        //For Start Date
-        var calendar = NSCalendar.current
-        calendar.timeZone = NSTimeZone.local
-        let dateAtMidnight = calendar.startOfDay(for: Date())
-        return dateAtMidnight
     }
 }
 
@@ -140,7 +139,7 @@ extension ActivityTrackingVC {
     
     //show locally saved user activity steps count on UI
     private func setTotalStepsCountsUpFromMidnight() {
-        if let activity = Activity.all().first(where: {$0.date == self.todayStartDate()}) {
+        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
             self.showStepsCount(count: activity.steps)
             self.upToPreviousSessionStepsfromTodayMidnight = activity.steps
         }
@@ -148,10 +147,10 @@ extension ActivityTrackingVC {
     
     //save/update user current steps from today midnight
     private func saveCurrentStepsCounts(steps : Int) {
-        if let activity = Activity.all().first(where: {$0.date == self.todayStartDate()}) {
-            activity.update(date: todayStartDate(), steps:steps)
+        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
+            activity.update(date: AppDelegate.todayStartDate(), steps:steps)
         } else {
-            let activtyInfo = [ActivityKeys.date : todayStartDate(), ActivityKeys.steps : steps] as [String : Any]
+            let activtyInfo = [ActivityKeys.date : AppDelegate.todayStartDate(), ActivityKeys.steps : steps] as [String : Any]
             Activity.saveWith(info: activtyInfo)
         }
     }

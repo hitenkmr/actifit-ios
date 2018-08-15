@@ -79,6 +79,7 @@ struct ActivityKeys {
 struct UserKeys {
     static let steemit_username = "steemit_username"
     static let private_posting_key = "private_posting_key"
+    static let last_post_date_time_interval = "last_post_date_time_interval"
 }
 
 //MARK: SERVER POST KEYS

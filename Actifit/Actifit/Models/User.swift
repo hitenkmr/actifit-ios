@@ -14,6 +14,11 @@ class User : Object {
     
     @objc dynamic var steemit_username: String = ""
     @objc dynamic var private_posting_key: String = ""
+    @objc dynamic var last_post_date_time_interval: TimeInterval = Date().timeIntervalSince1970 //greater value which allows user to compare date
+
+    class var sharedInstance : User {
+        return User()
+    }
     
     class func saveWith(info : [String : Any]) {
         DispatchQueue.global().async {
@@ -38,10 +43,10 @@ class User : Object {
         return user
     }
     
-    //delete current user dredentials
+    //delete current user credentials
     class func deleteCurrentUser() {
         var config = Realm.Configuration.defaultConfiguration
-        config.schemaVersion = 1 //increase schemaversion if properties changed
+        config.schemaVersion = 2 //increase schemaversion if properties changed
         config.migrationBlock = { (migration, oldSchemaVersion) in
             // nothing to do
         }
@@ -57,12 +62,13 @@ class User : Object {
     }
     
     //update the credentials
-    func updateUser(steemit_username :String, private_posting_key : String) {
+    func updateUser(steemit_username :String, private_posting_key : String, last_post_date_time_interval : TimeInterval) {
         autoreleasepool {
             if let realm = AppDelegate.defaultRealm() {
                 realm.beginWrite()
                 self.steemit_username = steemit_username
                 self.private_posting_key = private_posting_key
+                self.last_post_date_time_interval = last_post_date_time_interval
                 try! realm.commitWrite()
             }
         }

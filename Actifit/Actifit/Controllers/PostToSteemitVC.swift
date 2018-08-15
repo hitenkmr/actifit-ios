@@ -36,7 +36,7 @@ class PostToSteemitVC: UIViewController {
     var currentTextField : AFTextField?
     
     lazy var todayActivity = {
-        return Activity.all().first(where: {$0.date == self.todayStartDate()})
+        return Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()})
     }()
     
     lazy var currentUser = {
@@ -107,7 +107,6 @@ class PostToSteemitVC: UIViewController {
     }
     
     @IBAction func postToSteemitBtnAction(_ sender : UIButton) {
-        
         //save user steemit credentials privately in local database
         self.saveOrUpdateUserCredentials()
         
@@ -205,26 +204,16 @@ class PostToSteemitVC: UIViewController {
         return newTagString
     }
     
-    //returns current day date from midnight
-    func todayStartDate() -> Date {
-        //For Start Date
-        var calendar = NSCalendar.current
-        calendar.timeZone = NSTimeZone.local
-        let dateAtMidnight = calendar.startOfDay(for: Date())
-        return dateAtMidnight
-    }
-    
     func saveOrUpdateUserCredentials() {
         let userName = (self.steemitUsernameTextField.text ?? "").trimmingCharacters(in: CharacterSet.init(charactersIn: "@")).lowercased()
         let privatePostingKey = self.steemitPostingPrivateKeyTextField.text ?? ""
         
         if let currentUser = self.currentUser {
             //update user saved username and private posting key
-            
-            currentUser.updateUser(steemit_username: userName, private_posting_key: privatePostingKey)
+            currentUser.updateUser(steemit_username: userName, private_posting_key: privatePostingKey, last_post_date_time_interval: currentUser.last_post_date_time_interval)
         } else {
             //save user username and private posting key
-            User.saveWith(info: [UserKeys.steemit_username : userName, UserKeys.private_posting_key : privatePostingKey])
+            User.saveWith(info: [UserKeys.steemit_username : userName, UserKeys.private_posting_key : privatePostingKey, UserKeys.last_post_date_time_interval : Date().timeIntervalSince1970])
         }
         self.currentUser = User.current()
     }
@@ -247,6 +236,11 @@ class PostToSteemitVC: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 if let jsonString = json as? String {
                     if jsonString == "success" {
+                        //update user last post time interval
+                        if let currentUser =  User.current() {
+                            currentUser.updateUser(steemit_username: currentUser.steemit_username, private_posting_key: currentUser.private_posting_key, last_post_date_time_interval: AppDelegate.todayStartDate().timeIntervalSinceNow)
+                            
+                        }
                         self.showAlertWith(title: nil, message: Messages.success_post)
                     } else {
                         self.showAlertWith(title: nil, message: Messages.failed_post)

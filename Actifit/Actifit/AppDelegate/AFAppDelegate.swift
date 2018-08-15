@@ -19,7 +19,6 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         IQKeyboardManager.shared.enable = true
@@ -56,7 +55,7 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
     
     func defaultRealm() -> Realm? {
         var config = Realm.Configuration.defaultConfiguration
-        config.schemaVersion = 1
+        config.schemaVersion = 2
         config.migrationBlock = { (migration, oldSchemaVersion) in
             // nothing to do
         }
@@ -67,6 +66,17 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         return nil
+    }
+    
+    //HELPERS
+    
+    //returns current day date from midnight
+    func todayStartDate() -> Date {
+        //For Start Date
+        var calendar = NSCalendar.current
+        calendar.timeZone = NSTimeZone.local
+        let dateAtMidnight = calendar.startOfDay(for: Date())
+        return dateAtMidnight
     }
 
 }

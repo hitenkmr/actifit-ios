@@ -21,6 +21,7 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        //Enabling IBKeyboardManager to handle keyboard for textfields and textviews
         IQKeyboardManager.shared.enable = true
 
         //MARK: Start AppCenter services

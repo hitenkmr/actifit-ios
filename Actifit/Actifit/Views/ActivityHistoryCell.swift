@@ -24,7 +24,7 @@ class ActivityHistoryCell: UITableViewCell {
     }
 
     func configureWith(activity : Activity) {
-        self.dailyStepsLabel.text = self.formattedDAteStr(date: activity.date) + " - " + "Total Steps: \(activity.steps)"
+        self.dailyStepsLabel.text = self.formattedDAteStr(date: activity.date) + " - " + "Total Activity: \(activity.steps)"
     }
     
     

@@ -36,6 +36,9 @@ class Activity : Object {
             objs.forEach({ (content) in
                 contents.append(content)
             })
+            contents.sort(by: ({ (activity1, activity2) -> Bool in
+                return activity1.date > activity2.date
+            }))
         }
         return contents
     }

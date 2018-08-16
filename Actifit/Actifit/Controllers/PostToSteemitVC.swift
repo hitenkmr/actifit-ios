@@ -25,15 +25,12 @@ class PostToSteemitVC: UIViewController {
     @IBOutlet weak var chestTextField : AFTextField!
     @IBOutlet weak var postTagsTextView : AFTextView!
     @IBOutlet weak var postTagsTextViewHeightConstraint : NSLayoutConstraint!
-    @IBOutlet weak var postContentTextView : AFTextView!
-    @IBOutlet weak var postContentTextViewHeightConstraint : NSLayoutConstraint!
+    @IBOutlet weak var postContentTextView : UITextView!
     @IBOutlet weak var postToSteemitBtn : UIButton!
     
     @IBOutlet weak var postTitleTextViewLineLabel : UIView!
     @IBOutlet weak var postTagsTextViewLineLabel  : UIView!
     @IBOutlet weak var postContentTextViewLineLabel  : UIView!
-
-    var currentTextField : AFTextField?
     
     lazy var todayActivity = {
         return Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()})
@@ -150,7 +147,7 @@ class PostToSteemitVC: UIViewController {
         activityJson[PostKeys.waist] = self.waistTextField.text ?? ""
         activityJson[PostKeys.thigs] = self.thighTextField.text ?? ""
         activityJson[PostKeys.bodyfat] = self.bodyFatTextField.text ?? ""
-        activityJson[PostKeys.weightUnit] = "cm"
+        activityJson[PostKeys.weightUnit] = "kg"
         activityJson[PostKeys.heightUnit] = "cm"
         activityJson[PostKeys.chestUnit] = "cm"
         activityJson[PostKeys.waistUnit] = "cm"
@@ -163,6 +160,11 @@ class PostToSteemitVC: UIViewController {
     //MARK: HELPERS
     
     func applyFinishingTouchToUIElements() {
+        postContentTextView.layer.borderColor = UIColor.lightGray.cgColor
+        postContentTextView.layer.borderWidth = 1.0
+        postContentTextView.layer.cornerRadius = 4.0
+        
+        self.postContentTextView.clipsToBounds = true
         self.postTagsTextView.text = ""
         self.postTitleTextView.text = defaultPostTitle
         self.postToSteemitBtn.layer.cornerRadius = 4.0
@@ -172,7 +174,6 @@ class PostToSteemitVC: UIViewController {
         
         self.backBtn.setImage(#imageLiteral(resourceName: "back_black").withRenderingMode(.alwaysTemplate), for: .normal)
         self.backBtn.tintColor = UIColor.white
-        self.postContentTextView.heightConstraint = self.postContentTextViewHeightConstraint
         self.postTitleTextView.heightConstraint = self.postTitleTextViewHeightConstraint
         self.postTagsTextView.heightConstraint = self.postTagsTextViewHeightConstraint
     }
@@ -292,7 +293,7 @@ extension PostToSteemitVC : UITextFieldDelegate {
     //MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.currentTextField = textField as? AFTextField
+
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

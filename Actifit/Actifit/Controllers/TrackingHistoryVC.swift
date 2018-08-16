@@ -56,6 +56,6 @@ extension TrackingHistoryVC : UITableViewDataSource, UITableViewDelegate {
     //MARK: UITableViewDataSource
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Steps History"
+        return "Activity History"
     }
 }

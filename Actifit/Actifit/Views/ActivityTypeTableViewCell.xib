@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,17 +20,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aerobics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrc-2Y-Bnr">
-                        <rect key="frame" x="65" y="12.5" width="235" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <rect key="frame" x="64" y="13.5" width="236" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="82d-Xw-bx1">
-                        <rect key="frame" x="20" y="9" width="25" height="25"/>
+                        <rect key="frame" x="20" y="9.5" width="24" height="24"/>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.24313725489999999" blue="0.50588235290000005" alpha="0.78298938679999996" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="VJh-SG-fGS"/>
-                            <constraint firstAttribute="width" constant="25" id="lc0-wT-JAp"/>
+                            <constraint firstAttribute="height" constant="24" id="VJh-SG-fGS"/>
+                            <constraint firstAttribute="width" constant="24" id="lc0-wT-JAp"/>
                         </constraints>
                     </imageView>
                 </subviews>

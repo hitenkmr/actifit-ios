@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Yo-3x-AjK">
-                    <rect key="frame" x="20" y="40" width="335" height="557"/>
+                    <rect key="frame" x="20" y="40" width="335" height="562"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="iN0-l3-epB" id="izL-wZ-3V8"/>
@@ -24,7 +25,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQ1-hp-lTT">
-                    <rect key="frame" x="20" y="597" width="335" height="50"/>
+                    <rect key="frame" x="20" y="602" width="335" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="1ox-yf-YeL"/>
@@ -45,7 +46,7 @@
                 <constraint firstItem="iQ1-hp-lTT" firstAttribute="top" secondItem="6Yo-3x-AjK" secondAttribute="bottom" id="cee-D5-0bo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="iQ1-hp-lTT" secondAttribute="trailing" constant="20" id="dKt-ea-DIh"/>
                 <constraint firstItem="6Yo-3x-AjK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="dQN-It-PQh"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="iQ1-hp-lTT" secondAttribute="bottom" constant="20" id="npM-t1-Dpc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="iQ1-hp-lTT" secondAttribute="bottom" constant="15" id="npM-t1-Dpc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>

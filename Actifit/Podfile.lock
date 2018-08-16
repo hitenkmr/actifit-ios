@@ -15,14 +15,12 @@ PODS:
   - Realm/Headers (3.0.0)
   - RealmSwift (3.0.0):
     - Realm (= 3.0.0)
-  - SwiftLoader (0.2.5)
 
 DEPENDENCIES:
   - AppCenter
   - AppCenter/Distribute
   - IQKeyboardManagerSwift
   - RealmSwift (= 3.0)
-  - SwiftLoader
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -30,15 +28,13 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - Realm
     - RealmSwift
-    - SwiftLoader
 
 SPEC CHECKSUMS:
   AppCenter: 7e7b42e94b70294d1de3d747f164f0c1668a28e1
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   Realm: dec0de73be8c57506e39db72694d513c189493b3
   RealmSwift: 44a7090b16d1b22a406c6bf129bdd602db1bbecc
-  SwiftLoader: 12d7a6f661f5e9a2c9a72003e7dd6162f4ff0cc4
 
-PODFILE CHECKSUM: 75edfe6e22edb6c290d57297ac6ad77081cb0f80
+PODFILE CHECKSUM: 5a7466ebc495b6d384d83fd98494ae5243a5f42e
 
 COCOAPODS: 1.5.0

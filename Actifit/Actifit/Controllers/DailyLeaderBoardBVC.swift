@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftLoader
 
 class DailyLeaderBoardBVC: UIViewController {
     

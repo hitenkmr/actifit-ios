@@ -36,6 +36,7 @@
 		BE27263C211452940020E32D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE27263A211452940020E32D /* LaunchScreen.storyboard */; };
 		BE925D8D2125E6D800C87803 /* DailyLeaderBoardBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */; };
 		BE925D8F2125EA9F00C87803 /* DailyLeaderboardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */; };
+		BE925D9421260BA800C87803 /* SwiftLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D9321260BA800C87803 /* SwiftLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		BE27263D211452940020E32D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderBoardBVC.swift; sourceTree = "<group>"; };
 		BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderboardTableCell.swift; sourceTree = "<group>"; };
+		BE925D9321260BA800C87803 /* SwiftLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 		BE272630211452890020E32D /* Actifit */ = {
 			isa = PBXGroup;
 			children = (
+				BE925D9221260B9A00C87803 /* External */,
 				BE222CFE2123A13A00AD025F /* API */,
 				BE0AB436211EB234000E9AEA /* Structs */,
 				BE0AB431211CE5CF000E9AEA /* Extensions */,
@@ -219,6 +222,14 @@
 				BE27263D211452940020E32D /* Info.plist */,
 			);
 			path = Actifit;
+			sourceTree = "<group>";
+		};
+		BE925D9221260B9A00C87803 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				BE925D9321260BA800C87803 /* SwiftLoader.swift */,
+			);
+			path = External;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,14 +313,12 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftLoader/SwiftLoader.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLoader.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -359,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE925D9421260BA800C87803 /* SwiftLoader.swift in Sources */,
 				BE222CF921237CE900AD025F /* UIView+Additions.swift in Sources */,
 				BE925D8D2125E6D800C87803 /* DailyLeaderBoardBVC.swift in Sources */,
 				BE0AB435211EB22F000E9AEA /* Structs.swift in Sources */,

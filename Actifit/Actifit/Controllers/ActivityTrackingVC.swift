@@ -105,7 +105,12 @@ extension ActivityTrackingVC {
     private func stopUpdating() {
         activityManager.stopActivityUpdates()
         pedometer.stopUpdates()
-        pedometer.stopEventUpdates()
+        if #available(iOS 10.0, *) {
+            pedometer.stopEventUpdates()
+        } else {
+            pedometer.stopUpdates()
+            // Fallback on earlier versions
+        }
     }
     
     private func on(error: Error) {
@@ -114,11 +119,28 @@ extension ActivityTrackingVC {
     
     //check for activity authorization Status
     private func checkAuthorizationStatus() {
-        switch CMMotionActivityManager.authorizationStatus() {
-        case CMAuthorizationStatus.denied:
-            onStop()
-            stepsCountLabel.text = "Not available"
-        default:break
+        if #available(iOS 11.0, *) {
+            switch CMMotionActivityManager.authorizationStatus() {
+            case CMAuthorizationStatus.denied:
+                onStop()
+                stepsCountLabel.text = "Not available"
+            default:break
+            }
+        } else {
+            //https://stackoverflow.com/questions/23360460/cmmotionactivitymanager-authorizationstatus?lq=1
+            // Fallback on earlier versions
+            
+            self.activityManager.queryActivityStarting(from: Date(), to: Date(), to: OperationQueue.main, withHandler: { (activities: [CMMotionActivity]?, error: Error?) -> () in
+                if error != nil {
+                    let errorCode = (error! as NSError).code
+                    if errorCode == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+                        self.onStop()
+                        self.stepsCountLabel.text = "Not available"
+                    }
+                } else {
+                    print("Authorized")
+                }
+            })
         }
     }
     
@@ -158,7 +180,7 @@ extension ActivityTrackingVC {
     //tracks different types of user activity state
     private func startTrackingActivityType() {
         activityManager.startActivityUpdates(to: OperationQueue.main) {
-            [weak self] (activity: CMMotionActivity?) in
+             (activity: CMMotionActivity?) in
             guard let activity = activity else { return }
             DispatchQueue.main.async {
                 if activity.walking {

@@ -17,9 +17,18 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>appcenter-$6c33684c-36f1-43dd-ba7a-f027e5803fc0</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMotionUsageDescription</key>
@@ -42,15 +51,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>appcenter-$6c33684c-36f1-43dd-ba7a-f027e5803fc0</string>
-			</array>
-		</dict>
 	</array>
 </dict>
 </plist>

@@ -230,10 +230,11 @@ class PostToSteemitVC: UIViewController {
     
     func postActvityWith(json : [String : Any]) {
         SwiftLoader.show(title: Messages.sending_post, animated: true)
-        APIMaster.postActvityWith(info: json, completion: { (json) in
+        APIMaster.postActvityWith(info: json, completion: { [weak self] (json) in
             DispatchQueue.main.async(execute: {
                 SwiftLoader.hide()
             })
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 if let jsonString = json as? String {
                     if jsonString == "success" {
@@ -242,10 +243,12 @@ class PostToSteemitVC: UIViewController {
                             currentUser.updateUser(steemit_username: currentUser.steemit_username, private_posting_key: currentUser.private_posting_key, last_post_date_time_interval: AppDelegate.todayStartDate().timeIntervalSinceNow)
                             
                         }
-                        self.showAlertWith(title: nil, message: Messages.success_post)
+                        self?.showAlertWith(title: nil, message: Messages.success_post)
                     } else {
-                        self.showAlertWith(title: nil, message: Messages.failed_post)
+                        self?.showAlertWith(title: nil, message: Messages.failed_post)
                     }
+                } else {
+                    self?.showAlertWith(title: nil, message: Messages.failed_post)
                 }
             })
         }) { (error) in
@@ -253,7 +256,7 @@ class PostToSteemitVC: UIViewController {
                 SwiftLoader.hide()
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                self.showAlertWith(title: nil, message: Messages.failed_post)
+                self.showAlertWith(title: nil, message: error.localizedDescription)
             })
         }
     }

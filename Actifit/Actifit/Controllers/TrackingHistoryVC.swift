@@ -24,6 +24,9 @@ class TrackingHistoryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.history = Activity.all()
+        
+        self.trackingHistoryTableView.tableFooterView = UIView()
+
         self.backBtn.setImage(#imageLiteral(resourceName: "back_black").withRenderingMode(.alwaysTemplate), for: .normal)
         self.backBtn.tintColor = UIColor.white
     }
@@ -55,6 +58,10 @@ extension TrackingHistoryVC : UITableViewDataSource, UITableViewDelegate {
     
     //MARK: UITableViewDataSource
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Activity History"
     }

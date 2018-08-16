@@ -34,6 +34,8 @@
 		BE272637211452890020E32D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE272635211452890020E32D /* Main.storyboard */; };
 		BE272639211452940020E32D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE272638211452940020E32D /* Assets.xcassets */; };
 		BE27263C211452940020E32D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE27263A211452940020E32D /* LaunchScreen.storyboard */; };
+		BE925D8D2125E6D800C87803 /* DailyLeaderBoardBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */; };
+		BE925D8F2125EA9F00C87803 /* DailyLeaderboardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		BE272638211452940020E32D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE27263B211452940020E32D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE27263D211452940020E32D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderBoardBVC.swift; sourceTree = "<group>"; };
+		BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderboardTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 				BE272633211452890020E32D /* ActivityTrackingVC.swift */,
 				BE0AB422211BF45A000E9AEA /* TrackingHistoryVC.swift */,
 				BE0AB441211F68A3000E9AEA /* PostToSteemitVC.swift */,
+				BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 				BE222CF421237BDB00AD025F /* ActivityTypeTableViewCell.swift */,
 				BE222CF521237BDB00AD025F /* ActivityTypeTableViewCell.xib */,
 				BE222CFC2123829700AD025F /* ActivityTypesView.xib */,
+				BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE222CF921237CE900AD025F /* UIView+Additions.swift in Sources */,
+				BE925D8D2125E6D800C87803 /* DailyLeaderBoardBVC.swift in Sources */,
 				BE0AB435211EB22F000E9AEA /* Structs.swift in Sources */,
 				BE222CF621237BDB00AD025F /* ActivityTypeTableViewCell.swift in Sources */,
 				BE0AB411211A29B1000E9AEA /* Activity.swift in Sources */,
@@ -374,6 +381,7 @@
 				BE0AB426211BF641000E9AEA /* ActivityHistoryCell.swift in Sources */,
 				BE222CE72120BC2E00AD025F /* ConstaintMaker.swift in Sources */,
 				BE0AB442211F68A3000E9AEA /* PostToSteemitVC.swift in Sources */,
+				BE925D8F2125EA9F00C87803 /* DailyLeaderboardTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

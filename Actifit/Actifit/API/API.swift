@@ -20,17 +20,23 @@ public class API : NSObject{
     class var sharedInstance : API {
         return API()
     }
-    
-    let serverUrl = ""
-    
+ 
     //MARK: API callers
     
     func postActvityWith(info : [String : Any], completion : APICompletionHandler, failure : APIFailureHandler) {
-        let urlStr = self.serverUrl
+        let urlStr = ApiUrls.postActivity
         let url = URL.init(string: urlStr)
         var request = URLRequest.init(url: url!)
         request.addBasicHeaderFields()
         request.appendBodyWith(json: info)
+        self.forwardRequest(request: request, httpMethod: HttpMethods.HttpMethod_POST, completion: completion, failure: failure)
+    }
+    
+    func getDailyLeaderboard(completion : APICompletionHandler, failure : APIFailureHandler) {
+        let urlStr = ApiUrls.getDailyLeaderboard
+        let url = URL.init(string: urlStr)
+        var request = URLRequest.init(url: url!)
+        request.addBasicHeaderFields()
         self.forwardRequest(request: request, httpMethod: HttpMethods.HttpMethod_POST, completion: completion, failure: failure)
     }
     

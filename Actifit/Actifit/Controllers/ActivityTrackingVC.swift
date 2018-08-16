@@ -77,7 +77,8 @@ class ActivityTrackingVC: UIViewController {
     }
     
     @IBAction func viewDailyLeaderboardBtnAction(_ sender : UIButton) {
-        
+        self.navigationController?.pushViewController(DailyLeaderBoardBVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
+
     }
     
     //MARK : HELPERS

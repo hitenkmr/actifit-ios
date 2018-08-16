@@ -243,7 +243,9 @@ class PostToSteemitVC: UIViewController {
                             currentUser.updateUser(steemit_username: currentUser.steemit_username, private_posting_key: currentUser.private_posting_key, last_post_date_time_interval: AppDelegate.todayStartDate().timeIntervalSinceNow)
                             
                         }
-                        self?.showAlertWith(title: nil, message: Messages.success_post)
+                        self?.showAlertWithOkCompletion(title: nil, message: Messages.success_post, okClickedCompletion: { (COM) in
+                            self?.navigationController?.popViewController(animated: true)
+                        })
                     } else {
                         self?.showAlertWith(title: nil, message: Messages.failed_post)
                     }

@@ -3,6 +3,7 @@
 //  Actifit
 //
 //  Created by Hitender Kumar on 15/08/18.
+//  Copyright © 2018 actifit.io. All rights reserved.
 //
 
 import UIKit

@@ -3,6 +3,7 @@
 //  Actifit
 //
 //  Created by Hitender kumar on 11/08/18.
+//  Copyright © 2018 actifit.io. All rights reserved.
 //
 
 import Foundation
@@ -118,6 +119,6 @@ struct HttpMethods  {
 
 //API URLS
 struct ApiUrls {
-    static let postActivity = ""
-    static let getDailyLeaderboard = ""
+    static let postActivity = "https://actifit-pst-cr3at0r.herokuapp.com/api/p0stact1f1t"
+    static let getDailyLeaderboard = "https://actifit-pst-cr3at0r.herokuapp.com/api/top5p0sts"
 }

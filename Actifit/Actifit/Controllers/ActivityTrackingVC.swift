@@ -17,7 +17,8 @@ class ActivityTrackingVC: UIViewController {
     @IBOutlet weak var postToSteemitBtn : UIButton!
     @IBOutlet weak var viewTrackingHistoryBtn : UIButton!
     @IBOutlet weak var viewDailyLeaderboardBtn : UIButton!
-    
+    @IBOutlet weak var viewWalletBtn : UIButton!
+
     //MARK: INSTANCE VARIABLES
     
     let activityManager = CMMotionActivityManager()
@@ -80,6 +81,11 @@ class ActivityTrackingVC: UIViewController {
     @IBAction func viewDailyLeaderboardBtnAction(_ sender : UIButton) {
         self.navigationController?.pushViewController(DailyLeaderBoardBVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
 
+    }
+    
+    @IBAction func viewWalletBtnAction(_ sender : UIButton) {
+        self.navigationController?.pushViewController(WalletVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
+        
     }
     
     //MARK : HELPERS

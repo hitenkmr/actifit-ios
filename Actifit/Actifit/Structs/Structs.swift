@@ -112,13 +112,12 @@ struct PostKeys {
 struct HttpMethods  {
     static let HttpMethod_GET = "GET"
     static let HttpMethod_POST = "POST"
-    static let HttpMethod_DELETE = "DELETE"
+    static let HttpMethod_DELETE = "DELETE "
     static let HttpMethod_PUT = "PUT"
     static let HttpMethod_UPDATE = "UPDATE"
 }
 
 //API URLS
 struct ApiUrls {
-    static let postActivity = "https://actifit-pst-cr3at0r.herokuapp.com/api/p0stact1f1t"
-    static let getDailyLeaderboard = "https://actifit-pst-cr3at0r.herokuapp.com/api/top5p0sts"
+   
 }

@@ -206,7 +206,7 @@ class PostToSteemitVC: UIViewController {
     }
     
     func saveOrUpdateUserCredentials() {
-        let userName = (self.steemitUsernameTextField.text ?? "").trimmingCharacters(in: CharacterSet.init(charactersIn: "@")).lowercased()
+        let userName = (self.steemitUsernameTextField.text ?? "").byTrimming(string: "@").lowercased()
         let privatePostingKey = self.steemitPostingPrivateKeyTextField.text ?? ""
         
         if let currentUser = self.currentUser {

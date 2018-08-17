@@ -27,4 +27,9 @@ extension String {
     func utf8Data() -> Data {
         return self.data(using: String.Encoding.utf8)!
     }
+    
+    func byTrimming(string : String) -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: CharacterSet.init(charactersIn: string))
+    }
+    
 }

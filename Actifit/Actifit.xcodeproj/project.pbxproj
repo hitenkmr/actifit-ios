@@ -37,6 +37,10 @@
 		BE925D8D2125E6D800C87803 /* DailyLeaderBoardBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */; };
 		BE925D8F2125EA9F00C87803 /* DailyLeaderboardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */; };
 		BE925D9421260BA800C87803 /* SwiftLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D9321260BA800C87803 /* SwiftLoader.swift */; };
+		BE925D962127399800C87803 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D952127399800C87803 /* WalletVC.swift */; };
+		BE925D9821273E0800C87803 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D9721273E0800C87803 /* Transaction.swift */; };
+		BE925D9A21273EDB00C87803 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D9921273EDB00C87803 /* Dictionary+Additions.swift */; };
+		BE925D9C21273F7E00C87803 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D9B21273F7E00C87803 /* TransactionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +78,10 @@
 		BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderBoardBVC.swift; sourceTree = "<group>"; };
 		BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderboardTableCell.swift; sourceTree = "<group>"; };
 		BE925D9321260BA800C87803 /* SwiftLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLoader.swift; sourceTree = "<group>"; };
+		BE925D952127399800C87803 /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
+		BE925D9721273E0800C87803 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		BE925D9921273EDB00C87803 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
+		BE925D9B21273F7E00C87803 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,7 @@
 			children = (
 				BE0AB410211A29B1000E9AEA /* Activity.swift */,
 				BE222CF02123652100AD025F /* User.swift */,
+				BE925D9721273E0800C87803 /* Transaction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -131,6 +140,7 @@
 				BE0AB422211BF45A000E9AEA /* TrackingHistoryVC.swift */,
 				BE0AB441211F68A3000E9AEA /* PostToSteemitVC.swift */,
 				BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */,
+				BE925D952127399800C87803 /* WalletVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -144,6 +154,7 @@
 				BE222CF521237BDB00AD025F /* ActivityTypeTableViewCell.xib */,
 				BE222CFC2123829700AD025F /* ActivityTypesView.xib */,
 				BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */,
+				BE925D9B21273F7E00C87803 /* TransactionTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,6 +173,7 @@
 		BE0AB431211CE5CF000E9AEA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BE925D9921273EDB00C87803 /* Dictionary+Additions.swift */,
 				BE222CF821237CE900AD025F /* UIView+Additions.swift */,
 				BE222CEE212362B600AD025F /* UIViewController+Additions.swift */,
 				BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */,
@@ -368,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE925D9A21273EDB00C87803 /* Dictionary+Additions.swift in Sources */,
 				BE925D9421260BA800C87803 /* SwiftLoader.swift in Sources */,
 				BE222CF921237CE900AD025F /* UIView+Additions.swift in Sources */,
 				BE925D8D2125E6D800C87803 /* DailyLeaderBoardBVC.swift in Sources */,
@@ -386,12 +399,15 @@
 				BE222D002123A14300AD025F /* API.swift in Sources */,
 				BE0AB413211A2C89000E9AEA /* Constants.swift in Sources */,
 				BE222CEB2120C8E300AD025F /* String+Extension.swift in Sources */,
+				BE925D9821273E0800C87803 /* Transaction.swift in Sources */,
 				BE222CE52120BAAB00AD025F /* AFTextField.swift in Sources */,
 				BE0AB423211BF45A000E9AEA /* TrackingHistoryVC.swift in Sources */,
+				BE925D9C21273F7E00C87803 /* TransactionTableViewCell.swift in Sources */,
 				BE0AB426211BF641000E9AEA /* ActivityHistoryCell.swift in Sources */,
 				BE222CE72120BC2E00AD025F /* ConstaintMaker.swift in Sources */,
 				BE0AB442211F68A3000E9AEA /* PostToSteemitVC.swift in Sources */,
 				BE925D8F2125EA9F00C87803 /* DailyLeaderboardTableCell.swift in Sources */,
+				BE925D962127399800C87803 /* WalletVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

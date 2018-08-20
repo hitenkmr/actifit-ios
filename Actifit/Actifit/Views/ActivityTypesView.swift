@@ -50,7 +50,7 @@ extension ActivityTypesView : UITableViewDelegate, UITableViewDataSource {
         cell.activityTypeLabel.text = activityType
        
         let contains = self.selectedActivities.contains(activityType)
-        cell.selectedActivityImageview.backgroundColor = contains ? UIColor.red : UIColor.clear
+        cell.selectedActivityImageview.backgroundColor = contains ? ColorTheme : UIColor.clear
        // cell.selectedActivityImageview.isHidden = !contains
         cell.selectedActivityImageview.layer.cornerRadius = 2.0
 

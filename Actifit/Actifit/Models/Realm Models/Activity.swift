@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 import Realm
 
+let CurrentRealmSchemaVersion : UInt64 = 2
+
 class Activity : Object {
     
     @objc dynamic var date: Date = Date()
@@ -46,7 +48,7 @@ class Activity : Object {
     //clear activity history
     class func deleteAll() {
         var config = Realm.Configuration.defaultConfiguration
-        config.schemaVersion = 1 //increase schemaversion if properties changed
+        config.schemaVersion = CurrentRealmSchemaVersion //increase schemaversion if properties changed
         config.migrationBlock = { (migration, oldSchemaVersion) in
             // nothing to do
         }

@@ -46,8 +46,6 @@ class WalletVC: UIViewController {
         super.viewWillDisappear(animated)
      }
     
-    //MARK: Private Helpers
-    
     //MARK: INTERFACE BUILDER ACTIONS
     
     @IBAction func backBtnAction(_ sender : UIButton) {

@@ -46,7 +46,7 @@ class User : Object {
     //delete current user credentials
     class func deleteCurrentUser() {
         var config = Realm.Configuration.defaultConfiguration
-        config.schemaVersion = 2 //increase schemaversion if properties changed
+        config.schemaVersion = CurrentRealmSchemaVersion //increase schemaversion if properties changed
         config.migrationBlock = { (migration, oldSchemaVersion) in
             // nothing to do
         }

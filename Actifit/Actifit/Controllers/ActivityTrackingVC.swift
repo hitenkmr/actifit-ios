@@ -18,6 +18,7 @@ class ActivityTrackingVC: UIViewController {
     @IBOutlet weak var viewTrackingHistoryBtn : UIButton!
     @IBOutlet weak var viewDailyLeaderboardBtn : UIButton!
     @IBOutlet weak var viewWalletBtn : UIButton!
+    @IBOutlet weak var settingsBtn : UIButton!
 
     //MARK: INSTANCE VARIABLES
     
@@ -85,6 +86,11 @@ class ActivityTrackingVC: UIViewController {
     
     @IBAction func viewWalletBtnAction(_ sender : UIButton) {
         self.navigationController?.pushViewController(WalletVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
+        
+    }
+    
+    @IBAction func settingsBtnAction(_ sender : UIButton) {
+        self.navigationController?.pushViewController(SettingsVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
         
     }
     

@@ -3,11 +3,11 @@
 //  Actifit
 //
 //  Created by Hitender kumar on 17/08/18.
+//  Copyright © 2018 actifit.io. All rights reserved.
 //
 
 import UIKit
 
-/*{"user":"hitenkmr","reward_activity":"Development","token_count":500,"date":"2018-08-16T13:00:23.553Z","url":"/actifit/@hitenkmr/actifit-ios-app-development-contribution","note":"iOS iteration"}*/
 struct TransactionKeys {
     static let user = "user"
     static let reward_activity = "reward_activity"

@@ -119,5 +119,5 @@ struct HttpMethods  {
 
 //API URLS
 struct ApiUrls {
-   
+  
 }

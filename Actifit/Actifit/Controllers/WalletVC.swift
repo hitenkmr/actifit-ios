@@ -19,6 +19,9 @@ class WalletVC: UIViewController {
     var transactions = [Transaction]()
 
     var username = ""
+    lazy var currentUser = {
+        return User.current()
+    }()
     
     //MARK: VIEW LIFE CYCLE
     
@@ -27,6 +30,10 @@ class WalletVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let user = self.currentUser {
+            self.username = user.steemit_username
+            self.usernameTextField.text = self.username
+        }
         self.applyFinishingTouchToUIElements()
         self.getWalletBalance()
     }

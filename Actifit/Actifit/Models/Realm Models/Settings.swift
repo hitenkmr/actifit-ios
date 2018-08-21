@@ -21,6 +21,7 @@ class Settings: Object {
     @objc dynamic var measurementSystem: MeasurementSystem.RawValue = MeasurementSystem.metric.rawValue
     @objc dynamic var isDonatingCharity: Bool = false
     @objc dynamic var charityName: String = ""
+    @objc dynamic var charityDisplayName: String = ""
 
     class func saveWith(info : [String : Any]) {
         DispatchQueue.global().async {
@@ -65,13 +66,15 @@ class Settings: Object {
     }
     
     //update the activity(steps count)
-    func update(measurementSystem :MeasurementSystem, isDonatingCharity : Bool, charityName : String) {
+    func update(measurementSystem :MeasurementSystem, isDonatingCharity : Bool, charityName : String, charityDisplayName : String) {
         autoreleasepool {
             if let realm = AppDelegate.defaultRealm() {
                 realm.beginWrite()
                 self.measurementSystem = measurementSystem.rawValue
                 self.isDonatingCharity = isDonatingCharity
                 self.charityName = charityName
+                self.charityDisplayName = charityDisplayName
+                
                 try! realm.commitWrite()
             }
         }

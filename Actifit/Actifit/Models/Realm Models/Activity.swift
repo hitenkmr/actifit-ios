@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import Realm
 
-let CurrentRealmSchemaVersion : UInt64 = 2
+let CurrentRealmSchemaVersion : UInt64 = 3
 
 class Activity : Object {
     

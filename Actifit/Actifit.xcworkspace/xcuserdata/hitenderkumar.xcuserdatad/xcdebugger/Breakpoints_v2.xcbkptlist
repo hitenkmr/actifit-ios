@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Actifit/Controllers/SettingsVC.swift"
-            timestampString = "556486899.7850879"
+            filePath = "Actifit/Controllers/PostToSteemitVC.swift"
+            timestampString = "556570305.41231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "donateTopCharityBtnAction(_:)"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "postToSteemitBtnAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Actifit/Controllers/SettingsVC.swift"
-            timestampString = "556486899.785593"
+            filePath = "Actifit/Controllers/PostToSteemitVC.swift"
+            timestampString = "556570305.412493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "metricMeasurementSystemBtnAction(_:)"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "postToSteemitBtnAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

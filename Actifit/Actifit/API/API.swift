@@ -57,6 +57,13 @@ public class API : NSObject{
         self.forwardRequest(request: request, httpMethod: HttpMethods.HttpMethod_GET, completion: completion, failure: failure)
     }
     
+    func getCharities(completion : APICompletionHandler, failure : APIFailureHandler) {
+        let urlStr = ApiUrls.charities
+        let url = URL.init(string: urlStr)
+        var request = URLRequest.init(url: url!)
+        request.addBasicHeaderFields()
+        self.forwardRequest(request: request, httpMethod: HttpMethods.HttpMethod_GET, completion: completion, failure: failure)
+    }
     
     //MARK: Dispatching Request to server
     

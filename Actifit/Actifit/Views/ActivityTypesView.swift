@@ -13,9 +13,10 @@ class ActivityTypesView: UIView {
     @IBOutlet weak var activitiesTableView : UITableView!
     @IBOutlet weak var doneBtn : UIButton!
 
-    let activityTypes = ["Aerobics", "BasketBall", "Boxing", "Cycling", "Daily Activity", "Dancing", "Elliptical", "Football", "House Chores", "Jogging", "Martial Arts", "Moving Around Office", "Rope Skipping", "Running", "Shopping", "Stair Mill", "Table Tennis", "Tennis", "Treadmill", "Walking", "Weight Lifting"]
+    var activityTypesOrCharities = ["Aerobics", "BasketBall", "Boxing", "Cycling", "Daily Activity", "Dancing", "Elliptical", "Football", "House Chores", "Jogging", "Martial Arts", "Moving Around Office", "Rope Skipping", "Running", "Shopping", "Stair Mill", "Table Tennis", "Tennis", "Treadmill", "Walking", "Weight Lifting"]
     
     var selectedActivities = [String]()
+    var isForCharity = false
     
     var SelectedActivityTypesCompletion : ((_ selectedActivityTypes : [String]) -> ())?
 
@@ -40,13 +41,13 @@ extension ActivityTypesView : UITableViewDelegate, UITableViewDataSource {
     //MARK: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activityTypes.count
+        return activityTypesOrCharities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : ActivityTypeTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ActivityTypeTableViewCell", for: indexPath) as! ActivityTypeTableViewCell
         cell.selectionStyle = .none
-        let activityType = self.activityTypes[indexPath.row]
+        let activityType = self.activityTypesOrCharities[indexPath.row]
         cell.activityTypeLabel.text = activityType
        
         let contains = self.selectedActivities.contains(activityType)
@@ -62,12 +63,18 @@ extension ActivityTypesView : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let type = self.activityTypes[indexPath.row]
-        if !self.selectedActivities.contains(type) {
-            self.selectedActivities.append(self.activityTypes[indexPath.row])
+        let type = self.activityTypesOrCharities[indexPath.row]
+        if self.isForCharity {
+            self.selectedActivities.removeAll()
+            self.selectedActivities.append(type)
         } else {
-           self.selectedActivities = self.selectedActivities.filter({$0 != type})
+            if !self.selectedActivities.contains(type) {
+                self.selectedActivities.append(self.activityTypesOrCharities[indexPath.row])
+            } else {
+                self.selectedActivities = self.selectedActivities.filter({$0 != type})
+            }
         }
+       
         self.activitiesTableView.reloadData()
     }
     

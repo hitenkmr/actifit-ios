@@ -40,6 +40,10 @@ class PostToSteemitVC: UIViewController {
         return User.current()
     }()
     
+    lazy var settings = {
+        return Settings.current()
+    }()
+    
     var defaultPostTitle = ""
     
     //MARK: VIEW LIFE CYCLE
@@ -147,14 +151,46 @@ class PostToSteemitVC: UIViewController {
         activityJson[PostKeys.waist] = self.waistTextField.text ?? ""
         activityJson[PostKeys.thigs] = self.thighTextField.text ?? ""
         activityJson[PostKeys.bodyfat] = self.bodyFatTextField.text ?? ""
-        activityJson[PostKeys.weightUnit] = "kg"
-        activityJson[PostKeys.heightUnit] = "cm"
-        activityJson[PostKeys.chestUnit] = "cm"
-        activityJson[PostKeys.waistUnit] = "cm"
-        activityJson[PostKeys.thighsUnit] = "cm"
+        
+        //settings default measurement system to metric
+        var measurementSystem = MeasurementSystem.metric.rawValue
+        var isDonatingToCharity = false
+        var charityName = ""
+
+        if let settings = self.settings {
+            //send charity_name if is donating to charity
+            if settings.isDonatingCharity {
+                charityName = settings.charityName
+                activityJson[PostKeys.charity_name] = charityName
+            }
+            //updating from saved settings
+            measurementSystem = settings.measurementSystem
+            isDonatingToCharity = settings.isDonatingCharity
+        }
+        
+        activityJson[PostKeys.weightUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.kg : MeasurementUnit.us.lb
+        
+        activityJson[PostKeys.heightUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.ft
+
+        activityJson[PostKeys.chestUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
+
+        activityJson[PostKeys.waistUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
+
+        activityJson[PostKeys.thighsUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
+        
+        
         activityJson[PostKeys.appType] = AppType
         activityJson[PostKeys.appVersion] = CurrentAppVersion
-        self.postActvityWith(json: activityJson)
+        
+        if isDonatingToCharity {
+            self.showAlertWith(title: nil, message: Messages.current_workout_going_charity + charityName, okActionTitle: "OK", cancelActionTitle: "CANCEL", okClickedCompletion: { (okClicked) in
+                self.postActvityWith(json: activityJson)
+            }) { (cancelClicked) in
+                //do nothing
+            }
+        } else {
+            self.postActvityWith(json: activityJson)
+        }
     }
     
     //MARK: HELPERS

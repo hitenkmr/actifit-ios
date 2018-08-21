@@ -108,7 +108,7 @@ struct PostKeys {
     static let thighsUnit = "thighsUnit"
     static let appType = "appType"
     static let appVersion = "appVersion"
-    static let charity_name = "charity_name"
+    static let charity = "charity"
 
 }
 
@@ -128,7 +128,7 @@ struct MeasurementUnit  {
 }
 
 //MARK: Request HTTP Methods
-struct SettinsgKeys  {
+struct SettingsKeys  {
     static let measurementSystem = "measurementSystem"
     static let isDonatingCharity = "isDonatingCharity"
     static let charityName = "charityName"

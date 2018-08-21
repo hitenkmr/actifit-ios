@@ -158,14 +158,16 @@ class PostToSteemitVC: UIViewController {
         var charityName = ""
 
         if let settings = self.settings {
-            //send charity_name if is donating to charity
+            //send charity_name if is donating to charity and charity name is not empty
             if settings.isDonatingCharity {
                 charityName = settings.charityName
-                activityJson[PostKeys.charity_name] = charityName
+            }
+            if !(charityName.isEmpty) {
+                activityJson[PostKeys.charity] = charityName
             }
             //updating from saved settings
             measurementSystem = settings.measurementSystem
-            isDonatingToCharity = settings.isDonatingCharity
+            isDonatingToCharity = settings.isDonatingCharity && !(charityName.isEmpty)
         }
         
         activityJson[PostKeys.weightUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.kg : MeasurementUnit.us.lb

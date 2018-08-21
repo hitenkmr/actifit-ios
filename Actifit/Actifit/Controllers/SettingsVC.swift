@@ -15,7 +15,7 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var donateTopCharityBtn : UIButton!
     @IBOutlet weak var metricDotView : UIView!
     @IBOutlet weak var usDotView : UIView!
-    @IBOutlet weak var charityInfoLabel : UILabel!
+    @IBOutlet weak var charityDisplayNameLabel : UILabel!
     @IBOutlet weak var saveSettingsBtn : UIButton!
     @IBOutlet weak var showCharityBtn : UIButton!
 
@@ -24,7 +24,7 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var USMeasurementSystemBtnDotViewWidthConstraint  : NSLayoutConstraint!
     @IBOutlet weak var USMeasurementSystemBtnDotViewHeightConstraint  : NSLayoutConstraint!
 
-    var isMetricSystemSelected = false
+    var isMetricSystemSelected = true
     var isDonateToCharitySelected = false
     
     var charities = [Charity]()
@@ -42,10 +42,11 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadCharities()
+        
         if let settings = self.settings {
             self.isMetricSystemSelected = settings.measurementSystem == MeasurementSystem.metric.rawValue
             self.isDonateToCharitySelected = settings.isDonatingCharity
-            self.showCharityBtn.setTitle(settings.charityName, for: .normal)
+            self.charityDisplayNameLabel.text = settings.charityDisplayName
         }
         self.applyFinihingTouchToUIElements()
     }
@@ -90,7 +91,7 @@ class SettingsVC: UIViewController {
         if let nib = Bundle.main.loadNibNamed("ActivityTypesView", owner: self, options: nil) {
             var objActivityTypesView : ActivityTypesView? = nib[0] as? ActivityTypesView
             objActivityTypesView?.activityTypesOrCharities = self.charities.map({$0.display_name})
-            objActivityTypesView?.selectedActivities = (self.showCharityBtn.titleLabel?.text ?? "").components(separatedBy: CharacterSet.init(charactersIn: ","))
+            objActivityTypesView?.selectedActivities = (self.charityDisplayNameLabel.text ?? "").components(separatedBy: CharacterSet.init(charactersIn: ","))
             objActivityTypesView?.isForCharity = true
             objActivityTypesView?.activitiesTableView.reloadData()
             self.view.addSubview(objActivityTypesView!)
@@ -102,7 +103,7 @@ class SettingsVC: UIViewController {
             }
             objActivityTypesView?.SelectedActivityTypesCompletion = { selectedActivities in
                 if selectedActivities.count > 0 {
-                    self.showCharityBtn.setTitle(selectedActivities[0], for: .normal)
+                    self.charityDisplayNameLabel.text = selectedActivities[0]
                 }
                 objActivityTypesView?.selectedActivities.removeAll()
                 objActivityTypesView?.removeFromSuperview()
@@ -114,13 +115,13 @@ class SettingsVC: UIViewController {
     @IBAction func saveSettingsBtnAction(_ sender : UIButton) {
         
         //metric system
-        let charityDisplayName = self.showCharityBtn.titleLabel?.text ?? ""
+        let charityDisplayName = self.charityDisplayNameLabel.text ?? ""
         let charityName = self.charities.first(where: {$0.display_name == charityDisplayName})?.charity_name ?? ""
 
         if let settings = self.settings {
             settings.update(measurementSystem: self.isMetricSystemSelected ? .metric : .us, isDonatingCharity: self.isDonateToCharitySelected, charityName: self.isDonateToCharitySelected ? charityName : "", charityDisplayName: self.isDonateToCharitySelected ? charityDisplayName : "")
         } else {
-            Settings.saveWith(info: [SettinsgKeys.measurementSystem : (self.isMetricSystemSelected ? MeasurementSystem.metric.rawValue : MeasurementSystem.us.rawValue), SettinsgKeys.isDonatingCharity : false, SettinsgKeys.charityName :  self.isDonateToCharitySelected ? charityName : "", SettinsgKeys.charityDisplayName : self.isDonateToCharitySelected ? charityDisplayName : ""])
+            Settings.saveWith(info: [SettingsKeys.measurementSystem : (self.isMetricSystemSelected ? MeasurementSystem.metric.rawValue : MeasurementSystem.us.rawValue), SettingsKeys.isDonatingCharity : false, SettingsKeys.charityName :  self.isDonateToCharitySelected ? charityName : "", SettingsKeys.charityDisplayName : self.isDonateToCharitySelected ? charityDisplayName : ""])
         }
         
         self.showAlertWithOkCompletion(title: nil, message: "Settings has been saved") { (cl) in

@@ -32,6 +32,12 @@ class PostToSteemitVC: UIViewController {
     @IBOutlet weak var postTagsTextViewLineLabel  : UIView!
     @IBOutlet weak var postContentTextViewLineLabel  : UIView!
     
+    @IBOutlet weak var heightUnitLabel  : UILabel!
+    @IBOutlet weak var weightUnitLabel  : UILabel!
+    @IBOutlet weak var waistUnitLabel  : UILabel!
+    @IBOutlet weak var thighsUnitLabel  : UILabel!
+    @IBOutlet weak var chestUnitLabel  : UILabel!
+
     lazy var todayActivity = {
         return Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()})
     }()
@@ -153,7 +159,6 @@ class PostToSteemitVC: UIViewController {
         activityJson[PostKeys.bodyfat] = self.bodyFatTextField.text ?? ""
         
         //settings default measurement system to metric
-        var measurementSystem = MeasurementSystem.metric.rawValue
         var isDonatingToCharity = false
         var charityName = ""
 
@@ -166,20 +171,14 @@ class PostToSteemitVC: UIViewController {
                 activityJson[PostKeys.charity] = charityName
             }
             //updating from saved settings
-            measurementSystem = settings.measurementSystem
             isDonatingToCharity = settings.isDonatingCharity && !(charityName.isEmpty)
         }
         
-        activityJson[PostKeys.weightUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.kg : MeasurementUnit.us.lb
-        
-        activityJson[PostKeys.heightUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.ft
-
-        activityJson[PostKeys.chestUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
-
-        activityJson[PostKeys.waistUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
-
-        activityJson[PostKeys.thighsUnit] = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
-        
+        activityJson[PostKeys.weightUnit] = self.weightUnitLabel.text!
+        activityJson[PostKeys.heightUnit] = self.heightUnitLabel.text!
+        activityJson[PostKeys.chestUnit] = self.chestUnitLabel.text!
+        activityJson[PostKeys.waistUnit] = self.waistUnitLabel.text!
+        activityJson[PostKeys.thighsUnit] = self.thighsUnitLabel.text!
         
         activityJson[PostKeys.appType] = AppType
         activityJson[PostKeys.appVersion] = CurrentAppVersion
@@ -198,6 +197,7 @@ class PostToSteemitVC: UIViewController {
     //MARK: HELPERS
     
     func applyFinishingTouchToUIElements() {
+        self.showMeasurementUnits()
         postContentTextView.layer.borderColor = UIColor.lightGray.cgColor
         postContentTextView.layer.borderWidth = 1.0
         postContentTextView.layer.cornerRadius = 4.0
@@ -214,6 +214,22 @@ class PostToSteemitVC: UIViewController {
         self.backBtn.tintColor = UIColor.white
         self.postTitleTextView.heightConstraint = self.postTitleTextViewHeightConstraint
         self.postTagsTextView.heightConstraint = self.postTagsTextViewHeightConstraint
+    }
+    
+    func showMeasurementUnits() {
+        var measurementSystem = MeasurementSystem.metric.rawValue
+         if let settings = self.settings {
+            measurementSystem = settings.measurementSystem
+        }
+        self.weightUnitLabel.text = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.kg : MeasurementUnit.us.lb
+        
+        self.heightUnitLabel.text = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.ft
+        
+        self.chestUnitLabel.text = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
+        
+        self.waistUnitLabel.text = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
+        
+        self.thighsUnitLabel.text = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
     }
     
     func tagsString() -> String {

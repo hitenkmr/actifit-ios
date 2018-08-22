@@ -15,7 +15,7 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var donateTopCharityBtn : UIButton!
     @IBOutlet weak var metricDotView : UIView!
     @IBOutlet weak var usDotView : UIView!
-    @IBOutlet weak var charityDisplayNameLabel : UILabel!
+    @IBOutlet weak var charityLinkTextView : UITextView!
     @IBOutlet weak var saveSettingsBtn : UIButton!
     @IBOutlet weak var showCharityBtn : UIButton!
 
@@ -28,7 +28,9 @@ class SettingsVC: UIViewController {
     var isDonateToCharitySelected = false
     
     var charities = [Charity]()
-    
+    var charityName = ""
+    var charityDisplayName = ""
+
     //MARK: VIEW LIFE CYCLE
     
     lazy var settings = {
@@ -46,7 +48,12 @@ class SettingsVC: UIViewController {
         if let settings = self.settings {
             self.isMetricSystemSelected = settings.measurementSystem == MeasurementSystem.metric.rawValue
             self.isDonateToCharitySelected = settings.isDonatingCharity
-            self.charityDisplayNameLabel.text = settings.charityDisplayName
+            self.charityName = settings.charityName
+            self.charityDisplayName = settings.charityDisplayName
+            if !self.charityName.isEmpty {
+               self.setTextViewLinkString()
+            }
+            self.showCharityBtn.setTitle(self.charityDisplayName, for: .normal)
         }
         self.applyFinihingTouchToUIElements()
     }
@@ -91,7 +98,7 @@ class SettingsVC: UIViewController {
         if let nib = Bundle.main.loadNibNamed("ActivityTypesView", owner: self, options: nil) {
             var objActivityTypesView : ActivityTypesView? = nib[0] as? ActivityTypesView
             objActivityTypesView?.activityTypesOrCharities = self.charities.map({$0.display_name})
-            objActivityTypesView?.selectedActivities = (self.charityDisplayNameLabel.text ?? "").components(separatedBy: CharacterSet.init(charactersIn: ","))
+            objActivityTypesView?.selectedActivities = (self.charityDisplayName).components(separatedBy: CharacterSet.init(charactersIn: ","))
             objActivityTypesView?.isForCharity = true
             objActivityTypesView?.activitiesTableView.reloadData()
             self.view.addSubview(objActivityTypesView!)
@@ -103,7 +110,10 @@ class SettingsVC: UIViewController {
             }
             objActivityTypesView?.SelectedActivityTypesCompletion = { selectedActivities in
                 if selectedActivities.count > 0 {
-                    self.charityDisplayNameLabel.text = selectedActivities[0]
+                    self.charityDisplayName = selectedActivities[0]
+                    self.charityName = self.charities.first(where: {$0.display_name == self.charityDisplayName})?.charity_name ?? ""
+                    self.showCharityBtn.setTitle(self.charityDisplayName, for: .normal)
+                    self.setTextViewLinkString()
                 }
                 objActivityTypesView?.selectedActivities.removeAll()
                 objActivityTypesView?.removeFromSuperview()
@@ -113,15 +123,11 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func saveSettingsBtnAction(_ sender : UIButton) {
-        
         //metric system
-        let charityDisplayName = self.charityDisplayNameLabel.text ?? ""
-        let charityName = self.charities.first(where: {$0.display_name == charityDisplayName})?.charity_name ?? ""
-
         if let settings = self.settings {
-            settings.update(measurementSystem: self.isMetricSystemSelected ? .metric : .us, isDonatingCharity: self.isDonateToCharitySelected, charityName: self.isDonateToCharitySelected ? charityName : "", charityDisplayName: self.isDonateToCharitySelected ? charityDisplayName : "")
+            settings.update(measurementSystem: self.isMetricSystemSelected ? .metric : .us, isDonatingCharity: self.isDonateToCharitySelected, charityName: charityName, charityDisplayName: charityDisplayName)
         } else {
-            Settings.saveWith(info: [SettingsKeys.measurementSystem : (self.isMetricSystemSelected ? MeasurementSystem.metric.rawValue : MeasurementSystem.us.rawValue), SettingsKeys.isDonatingCharity : false, SettingsKeys.charityName :  self.isDonateToCharitySelected ? charityName : "", SettingsKeys.charityDisplayName : self.isDonateToCharitySelected ? charityDisplayName : ""])
+            Settings.saveWith(info: [SettingsKeys.measurementSystem : (self.isMetricSystemSelected ? MeasurementSystem.metric.rawValue : MeasurementSystem.us.rawValue), SettingsKeys.isDonatingCharity : false, SettingsKeys.charityName :  charityName, SettingsKeys.charityDisplayName : charityDisplayName])
         }
         
         self.showAlertWithOkCompletion(title: nil, message: "Settings has been saved") { (cl) in
@@ -133,7 +139,8 @@ class SettingsVC: UIViewController {
     
     
     func applyFinihingTouchToUIElements() {
-        
+        self.saveSettingsBtn.layer.cornerRadius = 2.0
+        self.showCharityBtn.layer.cornerRadius = 2.0
         self.backBtn.setImage(#imageLiteral(resourceName: "back_black").withRenderingMode(.alwaysTemplate), for: .normal)
         self.backBtn.tintColor = UIColor.white
         
@@ -160,6 +167,11 @@ class SettingsVC: UIViewController {
         }
     }
     
+    func setTextViewLinkString() {
+        self.charityLinkTextView.attributedText = self.charitySteemitUrl().attributedString(font: UIFont.systemFont(ofSize: 14), textColor: ColorTheme)
+        self.charityLinkTextView.linkTextAttributes = [NSAttributedStringKey.link.rawValue : ColorTheme]
+    }
+    
     func selectMetricSystem(select : Bool) {
         self.metricMeasurementSystemBtn.layer.borderColor = select ? ColorTheme.cgColor : UIColor.darkGray.cgColor
         self.metricMeasurementSystemBtn.layer.borderWidth = 2.0
@@ -174,6 +186,10 @@ class SettingsVC: UIViewController {
         self.USMeasurementSystemBtnDotViewWidthConstraint.constant = select ? 10 : 0.0
         self.USMeasurementSystemBtnDotViewHeightConstraint.constant = select ? 10 : 0.0
         self.view.layoutIfNeeded()
+    }
+    
+    func charitySteemitUrl() -> String {
+        return "https://steemit.com/@" + self.charityName
     }
     
     //MARK: WEB SERVICES
@@ -205,5 +221,15 @@ class SettingsVC: UIViewController {
         }
 
     }
+}
+
+extension SettingsVC : UITextViewDelegate {
+    
+    //MARK : UITextViewDelegate
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        return true
+    }
+    
     
 }

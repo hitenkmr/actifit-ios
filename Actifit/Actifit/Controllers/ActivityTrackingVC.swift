@@ -40,6 +40,8 @@ class ActivityTrackingVC: UIViewController {
         self.postToSteemitBtn.layer.cornerRadius = 4.0
         self.viewTrackingHistoryBtn.layer.cornerRadius = 4.0
         self.viewDailyLeaderboardBtn.layer.cornerRadius = 4.0
+        self.viewWalletBtn.layer.cornerRadius = 4.0
+        self.settingsBtn.layer.cornerRadius = 4.0
 
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)

@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 extension String {
-    func attributedString(font : UIFont) -> NSMutableAttributedString {
+    func attributedString(font : UIFont, textColor : UIColor) -> NSMutableAttributedString {
         let attributedStr = NSMutableAttributedString.init(string: self)
-        attributedStr.addAttributes([NSAttributedStringKey.font : font as Any], range: NSRange.init(location: 0, length: attributedStr.length))
+        attributedStr.addAttributes([NSAttributedStringKey.font : font, NSAttributedStringKey.foregroundColor : textColor], range: NSRange.init(location: 0, length: attributedStr.length))
         return attributedStr
     }
     

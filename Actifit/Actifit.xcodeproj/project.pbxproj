@@ -81,6 +81,7 @@
 		BE3D8FDF212B3B9A00178152 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		BE3D8FE1212B403100178152 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		BE3D8FE4212C81BA00178152 /* Charity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charity.swift; sourceTree = "<group>"; };
+		BE3D8FEC212F469E00178152 /* Actifit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Actifit.entitlements; sourceTree = "<group>"; };
 		BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderBoardBVC.swift; sourceTree = "<group>"; };
 		BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderboardTableCell.swift; sourceTree = "<group>"; };
 		BE925D9321260BA800C87803 /* SwiftLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLoader.swift; sourceTree = "<group>"; };
@@ -227,6 +228,7 @@
 		BE272630211452890020E32D /* Actifit */ = {
 			isa = PBXGroup;
 			children = (
+				BE3D8FEC212F469E00178152 /* Actifit.entitlements */,
 				BE925D9221260B9A00C87803 /* External */,
 				BE222CFE2123A13A00AD025F /* API */,
 				BE0AB436211EB234000E9AEA /* Structs */,
@@ -295,6 +297,11 @@
 				TargetAttributes = {
 					BE27262D211452890020E32D = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -573,14 +580,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6CKF2URQY6;
+				DEVELOPMENT_TEAM = 2CVNRSPUJG;
 				INFOPLIST_FILE = Actifit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Actifit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Actifit.fitnesstracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -593,14 +600,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6CKF2URQY6;
+				DEVELOPMENT_TEAM = 2CVNRSPUJG;
 				INFOPLIST_FILE = Actifit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Actifit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Actifit.fitnesstracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -37,6 +37,7 @@
 		BE3D8FE0212B3B9A00178152 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3D8FDF212B3B9A00178152 /* SettingsVC.swift */; };
 		BE3D8FE2212B403100178152 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3D8FE1212B403100178152 /* Settings.swift */; };
 		BE3D8FE5212C81BA00178152 /* Charity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3D8FE4212C81BA00178152 /* Charity.swift */; };
+		BE3D8FF3212F4A0800178152 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3D8FF2212F4A0800178152 /* HealthKit.framework */; };
 		BE925D8D2125E6D800C87803 /* DailyLeaderBoardBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */; };
 		BE925D8F2125EA9F00C87803 /* DailyLeaderboardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */; };
 		BE925D9421260BA800C87803 /* SwiftLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D9321260BA800C87803 /* SwiftLoader.swift */; };
@@ -81,7 +82,8 @@
 		BE3D8FDF212B3B9A00178152 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		BE3D8FE1212B403100178152 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		BE3D8FE4212C81BA00178152 /* Charity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charity.swift; sourceTree = "<group>"; };
-		BE3D8FEC212F469E00178152 /* Actifit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Actifit.entitlements; sourceTree = "<group>"; };
+		BE3D8FF1212F47E700178152 /* Actifit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Actifit.entitlements; sourceTree = "<group>"; };
+		BE3D8FF2212F4A0800178152 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		BE925D8C2125E6D800C87803 /* DailyLeaderBoardBVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderBoardBVC.swift; sourceTree = "<group>"; };
 		BE925D8E2125EA9F00C87803 /* DailyLeaderboardTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLeaderboardTableCell.swift; sourceTree = "<group>"; };
 		BE925D9321260BA800C87803 /* SwiftLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLoader.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F912D2BD619DE8C3FE85463 /* Pods_Actifit.framework in Frameworks */,
+				BE3D8FF3212F4A0800178152 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +118,7 @@
 		5AA13FC8C3C7E14596880E7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE3D8FF2212F4A0800178152 /* HealthKit.framework */,
 				0FDABFA1F3E07474B668EE1A /* Pods_Actifit.framework */,
 			);
 			name = Frameworks;
@@ -228,7 +232,7 @@
 		BE272630211452890020E32D /* Actifit */ = {
 			isa = PBXGroup;
 			children = (
-				BE3D8FEC212F469E00178152 /* Actifit.entitlements */,
+				BE3D8FF1212F47E700178152 /* Actifit.entitlements */,
 				BE925D9221260B9A00C87803 /* External */,
 				BE222CFE2123A13A00AD025F /* API */,
 				BE0AB436211EB234000E9AEA /* Structs */,
@@ -299,7 +303,7 @@
 						CreatedOnToolsVersion = 9.4.1;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -579,6 +583,7 @@
 			baseConfigurationReference = B9C0610DDDC898B29A3927DD /* Pods-Actifit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Actifit/Actifit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2CVNRSPUJG;
 				INFOPLIST_FILE = Actifit/Info.plist;
@@ -599,6 +604,7 @@
 			baseConfigurationReference = 2BF616C1E455A6E6AD074981 /* Pods-Actifit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Actifit/Actifit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2CVNRSPUJG;
 				INFOPLIST_FILE = Actifit/Info.plist;

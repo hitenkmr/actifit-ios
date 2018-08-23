@@ -23,7 +23,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>appcenter-$6c33684c-36f1-43dd-ba7a-f027e5803fc0</string>
+				<string>appcenter-6c33684c-36f1-43dd-ba7a-f027e5803fc0</string>
 			</array>
 		</dict>
 	</array>
@@ -52,5 +52,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>To show health data in the App</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>To update health related data from the App</string>
 </dict>
 </plist>

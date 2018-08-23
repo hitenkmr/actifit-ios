@@ -69,7 +69,7 @@ struct Messages {
 
 //MARK: AppCenter Secrets
 struct AppCenter {
-    static let SecretKey = ""
+    static let SecretKey = "6c33684c-36f1-43dd-ba7a-f027e5803fc0"
 }
 
 //MARK: Activity Model Keys
@@ -146,5 +146,5 @@ struct HttpMethods  {
 
 //API URLS
 struct ApiUrls {
-   
+
 }

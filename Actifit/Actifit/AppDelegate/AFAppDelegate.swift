@@ -27,7 +27,7 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
 
         //MARK: Start AppCenter services
         MSAppCenter.start(AppCenter.SecretKey, withServices:[ MSAnalytics.self, MSCrashes.self, MSDistribute.self])
-
+        //Calendar.autoupdatingCurrent.isDateInToday(Date())
         return true
     }
 
@@ -57,7 +57,7 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
     
     func defaultRealm() -> Realm? {
         var config = Realm.Configuration.defaultConfiguration
-        config.schemaVersion = 2
+        config.schemaVersion = CurrentRealmSchemaVersion
         config.migrationBlock = { (migration, oldSchemaVersion) in
             // nothing to do
         }
@@ -79,6 +79,17 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
         calendar.timeZone = NSTimeZone.local
         let dateAtMidnight = calendar.startOfDay(for: Date())
         return dateAtMidnight
+    }
+    
+    func todayLocalDate() -> Date {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        //To prevent displaying either date or time, set the desired style to NoStyle.
+        dateFormatter.timeStyle = DateFormatter.Style.medium //Set time style
+        dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
+        dateFormatter.timeZone = TimeZone.current
+        let localDateStr = dateFormatter.string(from: date)
+        return dateFormatter.date(from: localDateStr) ?? Date()
     }
 
 }

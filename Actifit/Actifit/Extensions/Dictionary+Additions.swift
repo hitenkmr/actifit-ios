@@ -1,6 +1,6 @@
 //
 //  Dictionary+Additions.swift
-//  Bukit
+//  Actifit
 //
 //  Created by Hitender kumar on 29/06/18.
 //  Copyright © 2018 actifit.io. All rights reserved.

@@ -14,7 +14,7 @@ class User : Object {
     
     @objc dynamic var steemit_username: String = ""
     @objc dynamic var private_posting_key: String = ""
-    @objc dynamic var last_post_date_time_interval: TimeInterval = Date().timeIntervalSince1970 //greater value which allows user to compare date
+    @objc dynamic var last_post_date: Date = Date()
 
     class var sharedInstance : User {
         return User()
@@ -62,13 +62,13 @@ class User : Object {
     }
     
     //update the credentials
-    func updateUser(steemit_username :String, private_posting_key : String, last_post_date_time_interval : TimeInterval) {
+    func updateUser(steemit_username :String, private_posting_key : String, last_post_date : Date) {
         autoreleasepool {
             if let realm = AppDelegate.defaultRealm() {
                 realm.beginWrite()
                 self.steemit_username = steemit_username
                 self.private_posting_key = private_posting_key
-                self.last_post_date_time_interval = last_post_date_time_interval
+                self.last_post_date = last_post_date
                 try! realm.commitWrite()
             }
         }

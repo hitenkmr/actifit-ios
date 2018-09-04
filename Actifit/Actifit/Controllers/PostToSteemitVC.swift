@@ -273,10 +273,10 @@ class PostToSteemitVC: UIViewController {
         
         if let currentUser = self.currentUser {
             //update user saved username and private posting key
-            currentUser.updateUser(steemit_username: userName, private_posting_key: privatePostingKey, last_post_date_time_interval: currentUser.last_post_date_time_interval)
+            currentUser.updateUser(steemit_username: userName, private_posting_key: privatePostingKey, last_post_date : currentUser.last_post_date)
         } else {
             //save user username and private posting key
-            User.saveWith(info: [UserKeys.steemit_username : userName, UserKeys.private_posting_key : privatePostingKey, UserKeys.last_post_date_time_interval : Date().timeIntervalSince1970])
+            User.saveWith(info: [UserKeys.steemit_username : userName, UserKeys.private_posting_key : privatePostingKey, UserKeys.last_post_date : Date().yesterday]) //save user last post date atleat before today because if the post fails, the user can atlease post next time today.
         }
         self.currentUser = User.current()
     }
@@ -302,7 +302,7 @@ class PostToSteemitVC: UIViewController {
                     if jsonString == "success" {
                         //update user last post time interval
                         if let currentUser =  User.current() {
-                            currentUser.updateUser(steemit_username: currentUser.steemit_username, private_posting_key: currentUser.private_posting_key, last_post_date_time_interval: AppDelegate.todayStartDate().timeIntervalSinceNow)
+                            currentUser.updateUser(steemit_username: currentUser.steemit_username, private_posting_key: currentUser.private_posting_key, last_post_date: Date())
                             
                         }
                         self?.showAlertWithOkCompletion(title: nil, message: Messages.success_post, okClickedCompletion: { (COM) in

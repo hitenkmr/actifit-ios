@@ -45,6 +45,7 @@
 		BE925D9821273E0800C87803 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D9721273E0800C87803 /* Transaction.swift */; };
 		BE925D9A21273EDB00C87803 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D9921273EDB00C87803 /* Dictionary+Additions.swift */; };
 		BE925D9C21273F7E00C87803 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925D9B21273F7E00C87803 /* TransactionTableViewCell.swift */; };
+		BEFD706D2138F74800F2E7B6 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD706C2138F74800F2E7B6 /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		BE925D9721273E0800C87803 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		BE925D9921273EDB00C87803 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
 		BE925D9B21273F7E00C87803 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		BEFD706C2138F74800F2E7B6 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				BE0AB432211CE5EA000E9AEA /* UIDevice+Extension.swift */,
 				BE222CEA2120C8E300AD025F /* String+Extension.swift */,
 				BE222CEC2120C8F600AD025F /* AttributedString+Extension.swift */,
+				BEFD706C2138F74800F2E7B6 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,12 +236,12 @@
 			isa = PBXGroup;
 			children = (
 				BE3D8FF6212F569200178152 /* Actifit.entitlements */,
+				BE0AB414211A2C8D000E9AEA /* AppDelegate */,
 				BE925D9221260B9A00C87803 /* External */,
 				BE222CFE2123A13A00AD025F /* API */,
 				BE0AB436211EB234000E9AEA /* Structs */,
 				BE0AB431211CE5CF000E9AEA /* Extensions */,
 				BE0AB429211BF651000E9AEA /* Inline Helpers */,
-				BE0AB414211A2C8D000E9AEA /* AppDelegate */,
 				BE0AB424211BF625000E9AEA /* Views */,
 				BE0AB415211A302D000E9AEA /* Controllers */,
 				BE0AB40F211A2993000E9AEA /* Models */,
@@ -429,6 +432,7 @@
 				BE222CEB2120C8E300AD025F /* String+Extension.swift in Sources */,
 				BE925D9821273E0800C87803 /* Transaction.swift in Sources */,
 				BE222CE52120BAAB00AD025F /* AFTextField.swift in Sources */,
+				BEFD706D2138F74800F2E7B6 /* Date+Extension.swift in Sources */,
 				BE0AB423211BF45A000E9AEA /* TrackingHistoryVC.swift in Sources */,
 				BE925D9C21273F7E00C87803 /* TransactionTableViewCell.swift in Sources */,
 				BE0AB426211BF641000E9AEA /* ActivityHistoryCell.swift in Sources */,

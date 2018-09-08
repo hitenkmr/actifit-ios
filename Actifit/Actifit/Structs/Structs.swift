@@ -10,7 +10,7 @@ import Foundation
 
 let PostContentMinWordCount = 30
 let PostMinActivityStepsCount = 1000
-let CurrentAppVersion = "0.3.2"
+let CurrentAppVersion = "0.3.3"
 let AppType = "iOS"
 
 //MARK: PopUp messages
@@ -148,3 +148,4 @@ struct HttpMethods  {
 struct ApiUrls {
   
 }
+

@@ -37,10 +37,6 @@ class PostToSteemitVC: UIViewController {
     @IBOutlet weak var waistUnitLabel  : UILabel!
     @IBOutlet weak var thighsUnitLabel  : UILabel!
     @IBOutlet weak var chestUnitLabel  : UILabel!
-
-    lazy var todayActivity = {
-        return Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()})
-    }()
     
     lazy var currentUser = {
         return User.current()
@@ -63,7 +59,7 @@ class PostToSteemitVC: UIViewController {
         
         self.defaultPostTitle = "\(Messages.default_post_title)\(todayDateStringWithFormat(format: "MMMM d yyyy"))"
         //show today activity steps count
-        if let activity = todayActivity {
+        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
             self.activityCountLabel.text = "\(activity.steps)"
         }
         
@@ -74,6 +70,18 @@ class PostToSteemitVC: UIViewController {
         }
      
         self.applyFinishingTouchToUIElements()
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(self.toDayStepsUpdated(notification:)), name: NSNotification.Name.init(StepsUpdatedNotification), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        notificationCenter.removeObserver(self, name: NSNotification.Name.init(StepsUpdatedNotification), object: nil)
+
     }
     
     //MARK: INTERFACE BUILDER ACTIONS
@@ -153,7 +161,7 @@ class PostToSteemitVC: UIViewController {
         
         // check minimum steps count required to post the activity
         var stepsCount = 0
-        if let activity = self.todayActivity {
+        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
             stepsCount = activity.steps
         }
         if stepsCount < PostMinActivityStepsCount {
@@ -288,6 +296,21 @@ class PostToSteemitVC: UIViewController {
         return dateFormatter.string(from: Date())
     }
     
+    @objc func appMovedToForeground() {
+        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
+            self.activityCountLabel.text = "\(activity.steps)"
+        }
+        self.defaultPostTitle = "\(Messages.default_post_title)\(todayDateStringWithFormat(format: "MMMM d yyyy"))"
+    }
+    
+    @objc func toDayStepsUpdated(notification : NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let steps = userInfo["steps"] as? Int {
+                self.activityCountLabel.text = "\(steps)"
+            }
+        }
+    }
+    
     //MARK: WEB SERVICES
     
     func postActvityWith(json : [String : Any]) {
@@ -324,6 +347,7 @@ class PostToSteemitVC: UIViewController {
             })
         }
     }
+    
 }
 
 extension PostToSteemitVC : UITextViewDelegate {

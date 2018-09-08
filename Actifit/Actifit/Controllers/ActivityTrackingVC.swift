@@ -9,6 +9,8 @@
 import UIKit
 import CoreMotion
 
+let StepsUpdatedNotification = "StepsUpdatedNotification"
+
 class ActivityTrackingVC: UIViewController {
     
     //MARK: OUTLETS
@@ -19,15 +21,14 @@ class ActivityTrackingVC: UIViewController {
     @IBOutlet weak var viewDailyLeaderboardBtn : UIButton!
     @IBOutlet weak var viewWalletBtn : UIButton!
     @IBOutlet weak var settingsBtn : UIButton!
-
+    
     //MARK: INSTANCE VARIABLES
     
     let activityManager = CMMotionActivityManager()
     private let pedometer = CMPedometer()
     
-    var upToPreviousSessionStepsfromTodayMidnight : Int = 0
-
     var startDate = Date()
+    var timer : Timer?
     
     //MARK: View Life Cycle
     
@@ -42,22 +43,22 @@ class ActivityTrackingVC: UIViewController {
         self.viewDailyLeaderboardBtn.layer.cornerRadius = 4.0
         self.viewWalletBtn.layer.cornerRadius = 4.0
         self.settingsBtn.layer.cornerRadius = 4.0
-
+        
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        self.resetCountsAndStartTracking()
+        self.checkAuthorizationStatusAndStartTracking()
     }
-  
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //resetting total steps count(of global variable) from midnight to 0
-       // self.upToPreviousSessionStepsfromTodayMidnight = 0
+        // self.upToPreviousSessionStepsfromTodayMidnight = 0
         //self.onStop()
     }
     
@@ -66,12 +67,14 @@ class ActivityTrackingVC: UIViewController {
     @IBAction func postToSteemitBtnAction(_ sender : UIButton) {
         var userCanPost = true
         if let currentUser =  User.current() {
-           // userCanPost = abs(currentUser.last_post_date_time_interval) > abs(AppDelegate.todayStartDate().timeIntervalSinceNow)
+            // userCanPost = abs(currentUser.last_post_date_time_interval) > abs(AppDelegate.todayStartDate().timeIntervalSinceNow)
             let calender = Calendar.autoupdatingCurrent
             userCanPost = !(calender.isDateInToday(currentUser.last_post_date))
         }
         if userCanPost {
-            self.navigationController?.pushViewController(PostToSteemitVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
+            let postToSteemitVC : PostToSteemitVC = PostToSteemitVC.instantiateWithStoryboard(appStoryboard: .SB_Main) as! PostToSteemitVC
+            
+            self.navigationController?.pushViewController(postToSteemitVC, animated: true)
         } else {
             self.showAlertWith(title: nil, message: Messages.one_post_per_day_error)
         }
@@ -83,7 +86,7 @@ class ActivityTrackingVC: UIViewController {
     
     @IBAction func viewDailyLeaderboardBtnAction(_ sender : UIButton) {
         self.navigationController?.pushViewController(DailyLeaderBoardBVC.instantiateWithStoryboard(appStoryboard: .SB_Main), animated: true)
-
+        
     }
     
     @IBAction func viewWalletBtnAction(_ sender : UIButton) {
@@ -98,20 +101,39 @@ class ActivityTrackingVC: UIViewController {
     
     //MARK: HELPERS
     
-    func resetCountsAndStartTracking() {
+    func checkAuthorizationStatusAndStartTracking() {
         //resetting the start date when wiew appears
         self.startDate = Date()
-        self.setTotalStepsCountsUpFromMidnight()
         self.onStart()
     }
     
     @objc func appMovedToBackground() {
-        // self.saveCurrentStepsCounts()
+        self.timer?.invalidate()
     }
     
     @objc func appMovedToForeground() {
-        // self.saveCurrentStepsCounts()
-        self.resetCountsAndStartTracking()
+        self.queryAndUpdateDatafromMidnight()
+        self.checkAuthorizationStatusAndStartTracking()
+    }
+    
+    @objc func queryAndUpdateDatafromMidnight() {
+        let calender = Calendar.autoupdatingCurrent
+        if !(calender.isDateInToday(startDate)) {
+            self.showStepsCount(count: 0)
+            self.onStart()
+        } else {
+            self.pedometer.queryPedometerData(from: AppDelegate.todayStartDate(), to: Date()) {
+                [weak self] pedometerData, error in
+                guard let pedometerData = pedometerData, error == nil else { return }
+                DispatchQueue.main.async {
+                    print("steps from background tracking : \(pedometerData.numberOfSteps)")
+                    let totalSteps = pedometerData.numberOfSteps.intValue
+                    self?.showStepsCount(count: totalSteps)
+                    self?.saveCurrentStepsCounts(steps: totalSteps)
+                    NotificationCenter.default.post(name: Notification.Name.init(StepsUpdatedNotification), object: nil, userInfo: ["steps" : totalSteps])
+                }
+            }
+        }
     }
 }
 
@@ -158,17 +180,17 @@ extension ActivityTrackingVC {
             //https://stackoverflow.com/questions/23360460/cmmotionactivitymanager-authorizationstatus?lq=1
             // Fallback on earlier versions
             
-           /* self.activityManager.queryActivityStarting(from: Date(), to: Date(), to: OperationQueue.main, withHandler: { (activities: [CMMotionActivity]?, error: Error?) -> () in
-                if error != nil {
-                    let errorCode = (error! as NSError).code
-                    if errorCode == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
-                        self.onStop()
-                        self.stepsCountLabel.text = "Not available"
-                    }
-                } else {
-                    print("Authorized")
-                }
-            })*/
+            /* self.activityManager.queryActivityStarting(from: Date(), to: Date(), to: OperationQueue.main, withHandler: { (activities: [CMMotionActivity]?, error: Error?) -> () in
+             if error != nil {
+             let errorCode = (error! as NSError).code
+             if errorCode == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+             self.onStop()
+             self.stepsCountLabel.text = "Not available"
+             }
+             } else {
+             print("Authorized")
+             }
+             })*/
         }
     }
     
@@ -181,20 +203,10 @@ extension ActivityTrackingVC {
         }
         
         if CMPedometer.isStepCountingAvailable() {
-            startCountingSteps()
+            self.startQueryingActivityEveryOneSecond()
         } else {
             stepsCountLabel.text = "Not available"
         }
-    }
-    
-    //show locally saved user activity steps count on UI
-    private func setTotalStepsCountsUpFromMidnight() {
-        var stepsCount = 0
-        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
-            stepsCount = activity.steps
-        }
-        self.showStepsCount(count: stepsCount)
-        self.upToPreviousSessionStepsfromTodayMidnight = stepsCount
     }
     
     //save/update user current steps from today midnight
@@ -206,11 +218,11 @@ extension ActivityTrackingVC {
             Activity.saveWith(info: activtyInfo)
         }
     }
-   
+    
     //tracks different types of user activity state
     private func startTrackingActivityType() {
         activityManager.startActivityUpdates(to: OperationQueue.main) {
-             (activity: CMMotionActivity?) in
+            (activity: CMMotionActivity?) in
             guard let activity = activity else { return }
             DispatchQueue.main.async {
                 if activity.walking {
@@ -227,46 +239,14 @@ extension ActivityTrackingVC {
     }
     
     //ask pedometer to start updating the user data on regular basis
-    private func startCountingSteps() {
-        
-        //query from start date to current date
-        self.pedometer.queryPedometerData(from: self.startDate, to: Date()) {
-            [weak self] pedometerData, error in
-            guard let pedometerData = pedometerData, error == nil else { return }
-            DispatchQueue.main.async {
-                updateWithpedometerData(pedometerData: pedometerData)
-            }
-        }
-        
-        self.checkIfItsANextDay()
-        
-        //start updating steps from start date
-        pedometer.startUpdates(from: self.startDate) {
-            [weak self] pedometerData, error in
-            guard let pedometerData = pedometerData, error == nil else { return }
-            self?.checkIfItsANextDay()
-            DispatchQueue.main.async {
-                updateWithpedometerData(pedometerData: pedometerData)
-            }
-        }
-        
-        func updateWithpedometerData(pedometerData : CMPedometerData) {
-            let steps = pedometerData.numberOfSteps.intValue
-            print("pedometerData.numberOfSteps.intValue : ", steps)
-            let totalStepsCount = (self.upToPreviousSessionStepsfromTodayMidnight) + steps
-            self.showStepsCount(count: totalStepsCount)
-            self.saveCurrentStepsCounts(steps: totalStepsCount)
-        }
-    }
-    
-    func checkIfItsANextDay() {
-        //check if next day occurs
-        let calender = Calendar.autoupdatingCurrent
-        if !(calender.isDateInToday(startDate)) {
-            self.startDate = Date()
-            self.setTotalStepsCountsUpFromMidnight()
-            self.pedometer.stopUpdates()
-            self.onStart()
+    private func startQueryingActivityEveryOneSecond() {
+        if #available(iOS 10.0, *) {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true, block: { (timer) in
+                self.queryAndUpdateDatafromMidnight()
+            })
+        } else {
+            // Fallback on earlier versions
+            self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.queryAndUpdateDatafromMidnight), userInfo: nil, repeats: true)
         }
     }
     

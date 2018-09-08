@@ -26,8 +26,7 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
 
         //MARK: Start AppCenter services
-        MSAppCenter.start(AppCenter.SecretKey, withServices:[ MSAnalytics.self, MSCrashes.self, MSDistribute.self])
-        //Calendar.autoupdatingCurrent.isDateInToday(Date())
+       // MSAppCenter.start(AppCenter.SecretKey, withServices:[ MSAnalytics.self, MSCrashes.self, MSDistribute.self])
         return true
     }
 

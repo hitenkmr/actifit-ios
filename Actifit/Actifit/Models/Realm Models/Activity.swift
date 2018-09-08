@@ -34,7 +34,7 @@ class Activity : Object {
     class func all() -> [Activity] {
         var contents = [Activity]()
         if let realm = AppDelegate.defaultRealm() {
-            let objs = realm.objects(Activity.self)
+            let objs = realm.objects(Activity.self).filter({$0.steps != 0})
             objs.forEach({ (content) in
                 contents.append(content)
             })

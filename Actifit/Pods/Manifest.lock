@@ -1,14 +1,4 @@
 PODS:
-  - AppCenter (1.8.0):
-    - AppCenter/Analytics (= 1.8.0)
-    - AppCenter/Crashes (= 1.8.0)
-  - AppCenter/Analytics (1.8.0):
-    - AppCenter/Core
-  - AppCenter/Core (1.8.0)
-  - AppCenter/Crashes (1.8.0):
-    - AppCenter/Core
-  - AppCenter/Distribute (1.8.0):
-    - AppCenter/Core
   - IQKeyboardManagerSwift (6.1.1)
   - Realm (3.0.0):
     - Realm/Headers (= 3.0.0)
@@ -17,24 +7,20 @@ PODS:
     - Realm (= 3.0.0)
 
 DEPENDENCIES:
-  - AppCenter
-  - AppCenter/Distribute
   - IQKeyboardManagerSwift
   - RealmSwift (= 3.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - AppCenter
     - IQKeyboardManagerSwift
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
-  AppCenter: 7e7b42e94b70294d1de3d747f164f0c1668a28e1
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   Realm: dec0de73be8c57506e39db72694d513c189493b3
   RealmSwift: 44a7090b16d1b22a406c6bf129bdd602db1bbecc
 
-PODFILE CHECKSUM: 5a7466ebc495b6d384d83fd98494ae5243a5f42e
+PODFILE CHECKSUM: 390247ba45d33e39fa85b7c9195880f6bc77c0cd
 
 COCOAPODS: 1.5.0

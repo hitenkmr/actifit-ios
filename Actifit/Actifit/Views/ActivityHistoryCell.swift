@@ -30,6 +30,7 @@ class ActivityHistoryCell: UITableViewCell {
     
     func formattedDAteStr(date : Date) -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter.string(from: date)
     }

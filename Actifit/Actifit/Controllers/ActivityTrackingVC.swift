@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import EFCountingLabel
 
 let StepsUpdatedNotification = "StepsUpdatedNotification"
 
@@ -15,7 +16,7 @@ class ActivityTrackingVC: UIViewController {
     
     //MARK: OUTLETS
     
-    @IBOutlet weak var stepsCountLabel : UILabel!
+    @IBOutlet weak var stepsCountLabel : EFCountingLabel!
     @IBOutlet weak var postToSteemitBtn : UIButton!
     @IBOutlet weak var viewTrackingHistoryBtn : UIButton!
     @IBOutlet weak var viewDailyLeaderboardBtn : UIButton!
@@ -38,6 +39,12 @@ class ActivityTrackingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //stepsCountLabel.method = .easeInOut
+        stepsCountLabel.format = "%d"
+        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
+            self.showStepsCount(count: activity.steps)
+        }
+        
         self.postToSteemitBtn.layer.cornerRadius = 4.0
         self.viewTrackingHistoryBtn.layer.cornerRadius = 4.0
         self.viewDailyLeaderboardBtn.layer.cornerRadius = 4.0
@@ -101,26 +108,38 @@ class ActivityTrackingVC: UIViewController {
     
     //MARK: HELPERS
     
-    func checkAuthorizationStatusAndStartTracking() {
-        //resetting the start date when wiew appears
-        self.startDate = Date()
-        self.onStart()
-    }
-    
     @objc func appMovedToBackground() {
         self.timer?.invalidate()
     }
     
     @objc func appMovedToForeground() {
-        self.queryAndUpdateDatafromMidnight()
-        self.checkAuthorizationStatusAndStartTracking()
+        //self.queryAndUpdateDatafromMidnight()s
+        let calender = Calendar.autoupdatingCurrent
+        if !(calender.isDateInToday(startDate)) {
+            self.startDate = Date()
+            self.pedometer.queryPedometerData(from: AppDelegate.startDateFor(date: self.startDate.yesterday), to: AppDelegate.todayStartDate()) {
+                [weak self] pedometerData, error in
+                guard let pedometerData = pedometerData, error == nil else { return }
+                DispatchQueue.main.async {
+                    print("steps from background tracking : \(pedometerData.numberOfSteps)")
+                    if let todayStartDate = self?.startDate {
+                        self?.saveCurrentStepsCounts(steps: pedometerData.numberOfSteps.intValue, midnightStartDate: AppDelegate.startDateFor(date: todayStartDate.yesterday))
+                    }
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.checkAuthorizationStatusAndStartTracking()
+            }
+        } else {
+            self.checkAuthorizationStatusAndStartTracking()
+        }
     }
     
     @objc func queryAndUpdateDatafromMidnight() {
         let calender = Calendar.autoupdatingCurrent
         if !(calender.isDateInToday(startDate)) {
             self.showStepsCount(count: 0)
-            self.onStart()
+            self.checkAuthorizationStatusAndStartTracking()
         } else {
             self.pedometer.queryPedometerData(from: AppDelegate.todayStartDate(), to: Date()) {
                 [weak self] pedometerData, error in
@@ -129,7 +148,7 @@ class ActivityTrackingVC: UIViewController {
                     print("steps from background tracking : \(pedometerData.numberOfSteps)")
                     let totalSteps = pedometerData.numberOfSteps.intValue
                     self?.showStepsCount(count: totalSteps)
-                    self?.saveCurrentStepsCounts(steps: totalSteps)
+                    self?.saveCurrentStepsCounts(steps: totalSteps, midnightStartDate: AppDelegate.todayStartDate())
                     NotificationCenter.default.post(name: Notification.Name.init(StepsUpdatedNotification), object: nil, userInfo: ["steps" : totalSteps])
                 }
             }
@@ -139,8 +158,9 @@ class ActivityTrackingVC: UIViewController {
 
 extension ActivityTrackingVC {
     
-    //start tracking user activity'
-    private func onStart() {
+    //on start event handler
+    private func checkAuthorizationStatusAndStartTracking() {
+        //resetting the start date when wiew appears
         self.startDate = Date()
         checkAuthorizationStatus()
         startUpdating()
@@ -203,18 +223,20 @@ extension ActivityTrackingVC {
         }
         
         if CMPedometer.isStepCountingAvailable() {
-            self.startQueryingActivityEveryOneSecond()
+            self.startQueryingActivityEveryTwoSecond()
         } else {
             stepsCountLabel.text = "Not available"
         }
     }
     
     //save/update user current steps from today midnight
-    private func saveCurrentStepsCounts(steps : Int) {
-        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
-            activity.update(date: AppDelegate.todayStartDate(), steps:steps)
+    private func saveCurrentStepsCounts(steps : Int, midnightStartDate : Date) {
+        if let activity = Activity.all().first(where: {$0.date == midnightStartDate}) {
+            // activity.update(date: AppDelegate.todayStartDate(), steps:steps)
+            let activtyInfo = [ActivityKeys.id : activity.id, ActivityKeys.date : activity.date, ActivityKeys.steps : steps] as [String : Any]
+            activity.upadteWith(info: activtyInfo)
         } else {
-            let activtyInfo = [ActivityKeys.date : AppDelegate.todayStartDate(), ActivityKeys.steps : steps] as [String : Any]
+            let activtyInfo = [ActivityKeys.id : Activity.all().count + 1, ActivityKeys.date : midnightStartDate, ActivityKeys.steps : steps] as [String : Any]
             Activity.saveWith(info: activtyInfo)
         }
     }
@@ -239,7 +261,7 @@ extension ActivityTrackingVC {
     }
     
     //ask pedometer to start updating the user data on regular basis
-    private func startQueryingActivityEveryOneSecond() {
+    private func startQueryingActivityEveryTwoSecond() {
         if #available(iOS 10.0, *) {
             self.timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true, block: { (timer) in
                 self.queryAndUpdateDatafromMidnight()
@@ -252,7 +274,17 @@ extension ActivityTrackingVC {
     
     //show the user activity data on UI
     private func showStepsCount(count : Int) {
-        self.stepsCountLabel.text = "Total Activity Today: " + "\(count)"
+        //self.stepsCountLabel.text = "Total Activity Today: " + "\(count)"
+        //   self.stepsCountLabel.text = "\(count)"
+        // stepsCountLabel.countFrom(stepsCountLabel.currentValue(), to: CGFloat(count), withDuration: 3.0)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+        self.stepsCountLabel.countFrom(self.stepsCountLabel.currentValue(), to: CGFloat(count), withDuration: 2.0)
+        self.stepsCountLabel.formatBlock = {
+            (value) in
+            return "Total Activity Today: " + (formatter.string(from: NSNumber(value: Int(value))) ?? "")
+        }
     }
 }
 

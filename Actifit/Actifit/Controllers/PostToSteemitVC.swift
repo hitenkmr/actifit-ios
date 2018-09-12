@@ -169,11 +169,13 @@ class PostToSteemitVC: UIViewController {
             return
         }
         
-        // check post content minimum words count to post the activity
-        let components = (self.postContentTextView.text ?? "").components(separatedBy: .whitespacesAndNewlines)
-        let postContentWordsArray = components.filter { !$0.isEmpty }
-        if postContentWordsArray.count < PostContentMinWordCount {
-            self.showAlertWith(title: nil, message: Messages.min_word_count_error + "\(PostContentMinWordCount) " + Messages.word_plural_label)
+        // check post content minimum characters count to post the activity
+      //  let components = (self.postContentTextView.text ?? "").components(separatedBy: .whitespacesAndNewlines)
+      //  let postContentWordsArray = components.filter { !$0.isEmpty }
+        
+        let contentText = (self.postContentTextView.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        if contentText.count < PostContentMinCharsCount {
+            self.showAlertWith(title: nil, message: Messages.min_word_count_error + "\(PostContentMinCharsCount) " + Messages.characters_plural_label)
             return
         }
         
@@ -332,7 +334,8 @@ class PostToSteemitVC: UIViewController {
                             self?.navigationController?.popViewController(animated: true)
                         })
                     } else {
-                        self?.showAlertWith(title: nil, message: Messages.failed_post)
+                        //if post fails then jsonString will contain error message to show to user
+                        self?.showAlertWith(title: nil, message: jsonString)
                     }
                 } else {
                     self?.showAlertWith(title: nil, message: Messages.failed_post)

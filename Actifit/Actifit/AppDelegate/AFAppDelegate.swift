@@ -72,6 +72,14 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
         return dateAtMidnight
     }
     
+    func startDateFor(date : Date) -> Date {
+        //For Start Date
+        var calendar = NSCalendar.current
+        calendar.timeZone = NSTimeZone.local
+        let dateAtMidnight = calendar.startOfDay(for: date)
+        return dateAtMidnight
+    }
+    
     func todayLocalDate() -> Date {
         let date = Date()
         let dateFormatter = DateFormatter()

@@ -8,7 +8,7 @@
 
 import Foundation
 
-let PostContentMinWordCount = 30
+let PostContentMinCharsCount = 100
 let PostMinActivityStepsCount = 1000
 let CurrentAppVersion = "0.3.4"
 let AppType = "iOS"
@@ -41,6 +41,7 @@ struct Messages {
     static let one_post_per_day_error = "You can only post once per day"
     static let min_word_count_error = "You need to describe your activity in at least "
     static let word_plural_label = "words"
+    static let characters_plural_label = "characters"
     static let current_workout_going_charity = "Your current activity rewards will go to charity "
     static let loading_charities = "Loading Charities..."
 
@@ -74,6 +75,7 @@ struct AppCenter {
 
 //MARK: Activity Model Keys
 struct ActivityKeys {
+    static let id = "id"
     static let date = "date"
     static let steps = "steps"
 }
@@ -146,6 +148,6 @@ struct HttpMethods  {
 
 //API URLS
 struct ApiUrls {
-    
+ 
 }
 

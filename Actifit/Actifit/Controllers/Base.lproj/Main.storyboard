@@ -50,8 +50,9 @@
                                                     <constraint firstAttribute="width" secondItem="qov-Gq-sRO" secondAttribute="height" multiplier="128:111" id="8dY-p4-I11"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Activity Today : 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kT-o3-JOa">
-                                                <rect key="frame" x="20" y="163" width="280" height="19.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Total Activity Today : 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kT-o3-JOa" customClass="EFCountingLabel" customModule="EFCountingLabel">
+                                                <rect key="frame" x="78" y="158" width="163.5" height="19.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -118,14 +119,13 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="LUU-Dk-qCr" secondAttribute="trailing" constant="20" id="3sZ-2l-zj3"/>
-                                            <constraint firstItem="LUU-Dk-qCr" firstAttribute="top" secondItem="8kT-o3-JOa" secondAttribute="bottom" constant="20" id="AMq-rl-DKL"/>
-                                            <constraint firstItem="8kT-o3-JOa" firstAttribute="top" secondItem="qov-Gq-sRO" secondAttribute="bottom" constant="20" id="B0b-sd-wB9"/>
                                             <constraint firstItem="LUU-Dk-qCr" firstAttribute="leading" secondItem="dVD-O4-bdZ" secondAttribute="leading" constant="20" id="FA6-g3-2g5"/>
                                             <constraint firstItem="qov-Gq-sRO" firstAttribute="centerX" secondItem="dVD-O4-bdZ" secondAttribute="centerX" id="Gle-kb-Cr1"/>
-                                            <constraint firstItem="8kT-o3-JOa" firstAttribute="leading" secondItem="dVD-O4-bdZ" secondAttribute="leading" constant="20" id="NLz-dK-DnM"/>
-                                            <constraint firstAttribute="trailing" secondItem="8kT-o3-JOa" secondAttribute="trailing" constant="20" id="QCA-VC-8wW"/>
                                             <constraint firstItem="qov-Gq-sRO" firstAttribute="top" secondItem="dVD-O4-bdZ" secondAttribute="top" constant="100" id="Upu-ej-WNM"/>
+                                            <constraint firstItem="8kT-o3-JOa" firstAttribute="top" secondItem="qov-Gq-sRO" secondAttribute="bottom" constant="15" id="YSj-SY-ptM"/>
                                             <constraint firstAttribute="bottom" secondItem="LUU-Dk-qCr" secondAttribute="bottom" constant="20" symbolic="YES" id="hQX-He-0dO"/>
+                                            <constraint firstItem="8kT-o3-JOa" firstAttribute="centerX" secondItem="dVD-O4-bdZ" secondAttribute="centerX" id="qPj-y1-wed"/>
+                                            <constraint firstItem="LUU-Dk-qCr" firstAttribute="top" secondItem="8kT-o3-JOa" secondAttribute="bottom" constant="25" id="wcl-P8-NZm"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -154,7 +154,7 @@
                     <connections>
                         <outlet property="postToSteemitBtn" destination="MAF-op-rIK" id="YC3-md-pJh"/>
                         <outlet property="settingsBtn" destination="3zr-8Q-8Yp" id="im0-YX-395"/>
-                        <outlet property="stepsCountLabel" destination="8kT-o3-JOa" id="Dfv-qd-nzz"/>
+                        <outlet property="stepsCountLabel" destination="8kT-o3-JOa" id="xhD-bV-8t8"/>
                         <outlet property="viewDailyLeaderboardBtn" destination="ypm-hf-zKK" id="ArB-g0-BsH"/>
                         <outlet property="viewTrackingHistoryBtn" destination="DXy-TB-qIL" id="N7d-lZ-8et"/>
                         <outlet property="viewWalletBtn" destination="GdR-DB-7sJ" id="iCY-ac-04n"/>
@@ -767,7 +767,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="IvK-4X-GR4"/>
                                 </constraints>
-                                <state key="normal" title="POST TO STEEMIT">
+                                <state key="normal" title="POST TO STEEM">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>

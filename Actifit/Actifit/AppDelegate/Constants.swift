@@ -18,6 +18,7 @@ let DeviceType         = AFTDeviceType()
 let ISSimulator        = (UIDevice.current.isSimulator)
 let APIMaster          = API.sharedInstance
 let APPUser            = User.sharedInstance
+let ActifitLoader            = SwiftLoader().sharedInstance
 
 //MARK: Device
 

@@ -43,10 +43,10 @@ class DailyLeaderBoardBVC: UIViewController {
     //MARK: WEB SERVICES
     
     func getDailyLeaderboard() {
-        SwiftLoader.show(title: Messages.fetching_leaderboard, animated: true)
+        ActifitLoader.show(title: Messages.fetching_leaderboard, animated: true)
         APIMaster.getDailyLeaderboard(completion: { [weak self] (jsonString) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             var noLeaderboardUsers = true
             if let jsonString = jsonString as? String {
@@ -78,7 +78,7 @@ class DailyLeaderBoardBVC: UIViewController {
             })
         }) { (error) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 self.showAlertWith(title: nil, message: error.localizedDescription)

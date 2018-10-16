@@ -65,11 +65,20 @@ class Activity : Object {
     class func all() -> [Activity] {
         var contents = [Activity]()
         if let realm = AppDelegate.defaultRealm() {
+            contents = realm.objects(Activity.self).map({$0})
+            contents = self.removeDuplicates(activities: contents)
+        }
+        return contents
+    }
+    
+    class func allWithoutCountZero() -> [Activity] {
+        var contents = [Activity]()
+        if let realm = AppDelegate.defaultRealm() {
             contents = realm.objects(Activity.self).filter({$0.steps != 0})
+            contents = self.removeDuplicates(activities: contents)
             contents.sort(by: ({ (activity1, activity2) -> Bool in
                 return activity1.date > activity2.date
             }))
-            // contents = self.removeDuplicates(activities: contents)
         }
         return contents
     }
@@ -91,15 +100,19 @@ class Activity : Object {
          [date : 18/08/2018, steps : 4567]]
          */
         var filtered = [Activity]()
-        var uniquePairs = [Date : Activity]()
+        
+        var uniquePairs = [String : Activity]()
         activities.forEach { (activity) in
-            if let activity1 = uniquePairs[activity.date] {
+            let activityDateStr = AppDelegate.stringFromDate(date: activity.date)
+            
+            if let activity1 = uniquePairs[activityDateStr] {
                 if activity.steps > activity1.steps {
-                    uniquePairs[activity.date] = activity
+                    uniquePairs[activityDateStr] = activity
                 }
             } else {
-                uniquePairs[activity.date] = activity
+                uniquePairs[activityDateStr] = activity
             }
+            
         }
         uniquePairs.forEach { (arg0) in
             let (_, value) = arg0

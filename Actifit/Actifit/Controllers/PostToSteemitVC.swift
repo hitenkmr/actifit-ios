@@ -57,9 +57,10 @@ class PostToSteemitVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.activityTypeLabel.text = ""
         self.defaultPostTitle = "\(Messages.default_post_title)\(todayDateStringWithFormat(format: "MMMM d yyyy"))"
         //show today activity steps count
-        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
+        if let activity = Activity.allWithoutCountZero().first(where: {$0.date == AppDelegate.todayStartDate()}) {
             self.activityCountLabel.text = "\(activity.steps)"
         }
         
@@ -161,17 +162,13 @@ class PostToSteemitVC: UIViewController {
         
         // check minimum steps count required to post the activity
         var stepsCount = 0
-        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
+        if let activity = Activity.allWithoutCountZero().first(where: {$0.date == AppDelegate.todayStartDate()}) {
             stepsCount = activity.steps
         }
         if stepsCount < PostMinActivityStepsCount {
             self.showAlertWith(title: nil, message: Messages.min_activity_steps_count_error + "\(PostMinActivityStepsCount) " + "activity yet.")
             return
         }
-        
-        // check post content minimum characters count to post the activity
-      //  let components = (self.postContentTextView.text ?? "").components(separatedBy: .whitespacesAndNewlines)
-      //  let postContentWordsArray = components.filter { !$0.isEmpty }
         
         let contentText = (self.postContentTextView.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         if contentText.count < PostContentMinCharsCount {
@@ -299,7 +296,7 @@ class PostToSteemitVC: UIViewController {
     }
     
     @objc func appMovedToForeground() {
-        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
+        if let activity = Activity.allWithoutCountZero().first(where: {$0.date == AppDelegate.todayStartDate()}) {
             self.activityCountLabel.text = "\(activity.steps)"
         }
         self.defaultPostTitle = "\(Messages.default_post_title)\(todayDateStringWithFormat(format: "MMMM d yyyy"))"
@@ -316,10 +313,10 @@ class PostToSteemitVC: UIViewController {
     //MARK: WEB SERVICES
     
     func postActvityWith(json : [String : Any]) {
-        SwiftLoader.show(title: Messages.sending_post, animated: true)
+        ActifitLoader.show(title: Messages.sending_post, animated: true)
         APIMaster.postActvityWith(info: json, completion: { [weak self] (json) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
@@ -343,7 +340,7 @@ class PostToSteemitVC: UIViewController {
             })
         }) { (error) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 self.showAlertWith(title: nil, message: error.localizedDescription)

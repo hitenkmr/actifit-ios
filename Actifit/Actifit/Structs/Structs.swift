@@ -111,7 +111,6 @@ struct PostKeys {
     static let appType = "appType"
     static let appVersion = "appVersion"
     static let charity = "charity"
-
 }
 
 //MARK: Measurement units
@@ -148,6 +147,5 @@ struct HttpMethods  {
 
 //API URLS
 struct ApiUrls {
- 
 }
 

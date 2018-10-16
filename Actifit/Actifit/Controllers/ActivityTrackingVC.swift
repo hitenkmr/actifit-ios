@@ -41,7 +41,7 @@ class ActivityTrackingVC: UIViewController {
         super.viewDidLoad()
         //stepsCountLabel.method = .easeInOut
         stepsCountLabel.format = "%d"
-        if let activity = Activity.all().first(where: {$0.date == AppDelegate.todayStartDate()}) {
+        if let activity = Activity.allWithoutCountZero().first(where: {$0.date == AppDelegate.todayStartDate()}) {
             self.showStepsCount(count: activity.steps)
         }
         
@@ -113,17 +113,19 @@ class ActivityTrackingVC: UIViewController {
     }
     
     @objc func appMovedToForeground() {
-        //self.queryAndUpdateDatafromMidnight()s
         let calender = Calendar.autoupdatingCurrent
         if !(calender.isDateInToday(startDate)) {
-            self.startDate = Date()
-            self.pedometer.queryPedometerData(from: AppDelegate.startDateFor(date: self.startDate.yesterday), to: AppDelegate.todayStartDate()) {
-                [weak self] pedometerData, error in
-                guard let pedometerData = pedometerData, error == nil else { return }
-                DispatchQueue.main.async {
-                    print("steps from background tracking : \(pedometerData.numberOfSteps)")
-                    if let todayStartDate = self?.startDate {
-                        self?.saveCurrentStepsCounts(steps: pedometerData.numberOfSteps.intValue, midnightStartDate: AppDelegate.startDateFor(date: todayStartDate.yesterday))
+            let yesterdayStartDate = AppDelegate.startDateFor(date: self.startDate)
+            if let after24HoursAfteYyesterdayStartDate = Calendar.current.date(
+                byAdding: .hour,
+                value: 24,
+                to: yesterdayStartDate) {
+                self.pedometer.queryPedometerData(from: yesterdayStartDate, to: after24HoursAfteYyesterdayStartDate) {
+                    [weak self] pedometerData, error in
+                    guard let pedometerData = pedometerData, error == nil else { return }
+                    DispatchQueue.main.async {
+                        print("yesterday total steps : \(pedometerData.numberOfSteps)")
+                        self?.saveCurrentStepsCounts(steps: pedometerData.numberOfSteps.intValue, midnightStartDate: yesterdayStartDate)
                     }
                 }
             }
@@ -231,12 +233,13 @@ extension ActivityTrackingVC {
     
     //save/update user current steps from today midnight
     private func saveCurrentStepsCounts(steps : Int, midnightStartDate : Date) {
-        if let activity = Activity.all().first(where: {$0.date == midnightStartDate}) {
+        let allActivities = Activity.all()
+        if let activity = allActivities.first(where: {$0.date == midnightStartDate}) {
             // activity.update(date: AppDelegate.todayStartDate(), steps:steps)
             let activtyInfo = [ActivityKeys.id : activity.id, ActivityKeys.date : activity.date, ActivityKeys.steps : steps] as [String : Any]
             activity.upadteWith(info: activtyInfo)
         } else {
-            let activtyInfo = [ActivityKeys.id : Activity.all().count + 1, ActivityKeys.date : midnightStartDate, ActivityKeys.steps : steps] as [String : Any]
+            let activtyInfo = [ActivityKeys.id : allActivities.count + 1, ActivityKeys.date : midnightStartDate, ActivityKeys.steps : steps] as [String : Any]
             Activity.saveWith(info: activtyInfo)
         }
     }

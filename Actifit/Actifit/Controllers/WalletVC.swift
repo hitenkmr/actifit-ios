@@ -73,10 +73,10 @@ class WalletVC: UIViewController {
             self.username = text.byTrimming(string: "@").lowercased()
         }
         self.view.endEditing(true)
-        SwiftLoader.show(title: Messages.fetching_user_balance, animated: true)
+        ActifitLoader.show(title: Messages.fetching_user_balance, animated: true)
         APIMaster.getWalletBalanceWith(username:self.username ,completion: { [weak self] (jsonString) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             self?.getTransactions()
             var actifitTokens = "Unable to fetch balance"
@@ -98,7 +98,7 @@ class WalletVC: UIViewController {
             }
         }) { (error) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 self.showAlertWith(title: nil, message: error.localizedDescription)
@@ -109,7 +109,7 @@ class WalletVC: UIViewController {
     func getTransactions() {
         APIMaster.getTransactions(username: self.username,completion: { [weak self] (jsonString) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             if let jsonString = jsonString as? String {
                 let data = jsonString.utf8Data()
@@ -128,7 +128,7 @@ class WalletVC: UIViewController {
             }
         }) { (error) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 self.showAlertWith(title: nil, message: error.localizedDescription)

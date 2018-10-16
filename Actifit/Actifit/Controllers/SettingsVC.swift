@@ -196,10 +196,10 @@ class SettingsVC: UIViewController {
     //MARK: WEB SERVICES
     
     func loadCharities() {
-        SwiftLoader.show(title: Messages.loading_charities, animated: true)
+        ActifitLoader.show(title: Messages.loading_charities, animated: true)
         APIMaster.getCharities(completion: { [weak self] (jsonString) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             if let jsonString = jsonString as? String {
                 let data = jsonString.utf8Data()
@@ -214,7 +214,7 @@ class SettingsVC: UIViewController {
             }
         }) { (error) in
             DispatchQueue.main.async(execute: {
-                SwiftLoader.hide()
+                ActifitLoader.hide()
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 self.showAlertWith(title: nil, message: error.localizedDescription)

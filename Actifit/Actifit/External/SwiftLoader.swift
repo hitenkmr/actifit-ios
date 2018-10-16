@@ -23,6 +23,7 @@ public class SwiftLoader: UIView {
     private var animated : Bool = true
     private var canUpdated = false
     private var title: String?
+    private var tapGestureRecognizer : UITapGestureRecognizer?
     
     private var config : Config = Config() {
         didSet {
@@ -36,21 +37,26 @@ public class SwiftLoader: UIView {
         }
     }
     
-    class var sharedInstance: SwiftLoader {
+    var sharedInstance: SwiftLoader {
         struct Singleton {
             static let instance = SwiftLoader(frame: CGRect.init(x: 0, y: 0, width: Config().size, height: Config().size))
         }
         return Singleton.instance
     }
     
-    public class func show(animated: Bool) {
+    public func show(animated: Bool) {
         self.show(title: nil, animated: animated)
     }
     
-    public class func show(title: String?, animated : Bool) {
+    public func show(title: String?, animated : Bool) {
         
         let currentWindow : UIWindow = UIApplication.shared.keyWindow!
-        let loader = SwiftLoader.sharedInstance
+
+        tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(handleTap))
+        tapGestureRecognizer?.numberOfTapsRequired = 1
+        currentWindow.addGestureRecognizer(tapGestureRecognizer!)
+
+        let loader = self.sharedInstance
         loader.canUpdated = true
         loader.animated = animated
         loader.title = title
@@ -76,13 +82,22 @@ public class SwiftLoader: UIView {
         }
     }
     
-    public class func hide() {
-        let loader = SwiftLoader.sharedInstance
+    @objc func handleTap() {
+        // handling code
+        self.hide()
+    }
+    
+    public func hide() {
+        if let tap = tapGestureRecognizer {
+            let currentWindow : UIWindow = UIApplication.shared.keyWindow!
+            currentWindow.removeGestureRecognizer(tap)
+        }
+        let loader = self.sharedInstance
         loader.stop()
     }
     
-    public class func setConfig(config : Config) {
-        let loader = SwiftLoader.sharedInstance
+    public func setConfig(config : Config) {
+        let loader = self.sharedInstance
         loader.config = config
         loader.frame = CGRect.init(x: 0, y: 0, width: loader.config.size, height: loader.config.size)
     }

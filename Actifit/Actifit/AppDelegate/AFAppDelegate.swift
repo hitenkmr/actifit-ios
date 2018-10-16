@@ -90,6 +90,13 @@ class AFAppDelegate: UIResponder, UIApplicationDelegate {
         let localDateStr = dateFormatter.string(from: date)
         return dateFormatter.date(from: localDateStr) ?? Date()
     }
+    
+    func stringFromDate(date : Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy" //Your New Date format as per requirement change it own
+        let newDate = dateFormatter.string(from: date) //pass Date here
+        return newDate
+    }
 
 }
 

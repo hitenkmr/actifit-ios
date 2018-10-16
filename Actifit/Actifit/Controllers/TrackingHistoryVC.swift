@@ -23,7 +23,7 @@ class TrackingHistoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.history = Activity.all()
+        self.history = Activity.allWithoutCountZero()
         
         self.trackingHistoryTableView.tableFooterView = UIView()
 

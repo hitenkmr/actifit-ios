@@ -2,7 +2,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Actifit' do
-pod 'RealmSwift', '3.0'
+pod 'RealmSwift'
 pod 'IQKeyboardManagerSwift'
 pod 'EFCountingLabel', '~> 4.0'
 

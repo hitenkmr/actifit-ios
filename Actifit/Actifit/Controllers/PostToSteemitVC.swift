@@ -38,6 +38,9 @@ class PostToSteemitVC: UIViewController {
     @IBOutlet weak var thighsUnitLabel  : UILabel!
     @IBOutlet weak var chestUnitLabel  : UILabel!
     
+    @IBOutlet weak var maximizeActifitTokensEarningBtn  : UIButton!
+    @IBOutlet weak var helpFindPostingKeyBtn  : UIButton!
+
     lazy var currentUser = {
         return User.current()
     }()
@@ -157,6 +160,35 @@ class PostToSteemitVC: UIViewController {
         }
     }
     
+    @IBAction func maximizeActifitTokensEarningBtnAction(_ sender : UIButton) {
+        sender.isSelected = !sender.isSelected
+        self.selectEarningsBtn(select: sender.isSelected)
+    }
+    
+    func selectEarningsBtn(select : Bool) {
+        self.maximizeActifitTokensEarningBtn.backgroundColor = select ? ColorTheme : UIColor.clear
+        // cell.selectedActivityImageview.isHidden = !contains
+        self.maximizeActifitTokensEarningBtn.layer.cornerRadius = 2.0
+        
+        self.maximizeActifitTokensEarningBtn.layer.borderWidth = select ? 0.0 : 1.0
+        
+        self.maximizeActifitTokensEarningBtn.layer.borderColor = select ? UIColor.clear.cgColor : UIColor.lightGray.cgColor
+    }
+    
+    @IBAction func helpFindPostingKeyBtnAction(_ sender : UIButton) {
+        //https://d.tube/#!/v/raserrano/h7rze7he
+        guard let url = URL(string: "https://d.tube/#!/v/raserrano/h7rze7he") else {
+            return //be safe
+        }
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    //MARK: HELPERS
+    
     func proceeedPostingWith(json : [String : Any]) {
         var activityJson = json
         
@@ -203,9 +235,12 @@ class PostToSteemitVC: UIViewController {
         activityJson[PostKeys.chestUnit] = self.chestUnitLabel.text!
         activityJson[PostKeys.waistUnit] = self.waistUnitLabel.text!
         activityJson[PostKeys.thighsUnit] = self.thighsUnitLabel.text!
-        
         activityJson[PostKeys.appType] = AppType
         activityJson[PostKeys.appVersion] = CurrentAppVersion
+        if self.maximizeActifitTokensEarningBtn.isSelected {
+            activityJson[PostKeys.full_afit_pay] = "on"
+        }
+
         self.postActvityWith(json: activityJson)
     }
     
@@ -229,6 +264,12 @@ class PostToSteemitVC: UIViewController {
         self.backBtn.tintColor = UIColor.white
         self.postTitleTextView.heightConstraint = self.postTitleTextViewHeightConstraint
         self.postTagsTextView.heightConstraint = self.postTagsTextViewHeightConstraint
+        
+       // let attributedStr = "Help me find my Private Posting Key".attributedString(font: UIFont.systemFont(ofSize: 14), textColor: ColorTheme)
+        
+        let attributedStr = NSMutableAttributedString.init(string: "Help me find my Private Posting Key")
+        attributedStr.addAttributes([NSAttributedStringKey.font : UIFont.italicSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor : ColorTheme, NSAttributedStringKey.underlineStyle : 1, NSAttributedStringKey.underlineColor : ColorTheme], range: NSRange.init(location: 0, length: attributedStr.length))
+        self.helpFindPostingKeyBtn.setAttributedTitle(attributedStr, for: UIControlState.normal)
     }
     
     func showMeasurementUnits() {
@@ -245,6 +286,7 @@ class PostToSteemitVC: UIViewController {
         self.waistUnitLabel.text = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
         
         self.thighsUnitLabel.text = measurementSystem == MeasurementSystem.metric.rawValue ? MeasurementUnit.metric.cm : MeasurementUnit.us.inch
+        selectEarningsBtn(select: false)
     }
     
     func tagsString() -> String {

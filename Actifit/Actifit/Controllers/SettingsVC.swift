@@ -25,6 +25,8 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var USMeasurementSystemBtnDotViewWidthConstraint  : NSLayoutConstraint!
     @IBOutlet weak var USMeasurementSystemBtnDotViewHeightConstraint  : NSLayoutConstraint!
 
+    @IBOutlet weak var appVersionNumberLabel  : UILabel!
+
     var isMetricSystemSelected = true
     var isDonateToCharitySelected = false
     
@@ -46,6 +48,7 @@ class SettingsVC: UIViewController {
         super.viewDidLoad()
         self.loadCharities()
         
+        appVersionNumberLabel.text = "Actifit App Version : v\(CurrentAppVersion)"
         if let settings = self.settings {
             self.isMetricSystemSelected = settings.measurementSystem == MeasurementSystem.metric.rawValue
             self.isDonateToCharitySelected = settings.isDonatingCharity
@@ -231,6 +234,4 @@ extension SettingsVC : UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         return true
     }
-    
-    
 }

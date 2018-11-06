@@ -1,16 +1,16 @@
 PODS:
   - EFCountingLabel (4.0.1)
   - IQKeyboardManagerSwift (6.1.1)
-  - Realm (3.0.0):
-    - Realm/Headers (= 3.0.0)
-  - Realm/Headers (3.0.0)
-  - RealmSwift (3.0.0):
-    - Realm (= 3.0.0)
+  - Realm (3.7.6):
+    - Realm/Headers (= 3.7.6)
+  - Realm/Headers (3.7.6)
+  - RealmSwift (3.7.6):
+    - Realm (= 3.7.6)
 
 DEPENDENCIES:
   - EFCountingLabel (~> 4.0)
   - IQKeyboardManagerSwift
-  - RealmSwift (= 3.0)
+  - RealmSwift
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -22,9 +22,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   EFCountingLabel: 1beb6707761ad00b97efc8bde5c3fceaa7cb9eec
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
-  Realm: dec0de73be8c57506e39db72694d513c189493b3
-  RealmSwift: 44a7090b16d1b22a406c6bf129bdd602db1bbecc
+  Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
+  RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
 
-PODFILE CHECKSUM: 6f383d4a9e3f10a45fda87f483f864f1793de57c
+PODFILE CHECKSUM: b9fbe376fa4f01c3a988903400eaf828b45c936f
 
 COCOAPODS: 1.5.0

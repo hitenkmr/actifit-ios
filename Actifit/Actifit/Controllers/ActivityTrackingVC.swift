@@ -22,7 +22,8 @@ class ActivityTrackingVC: UIViewController {
     @IBOutlet weak var viewDailyLeaderboardBtn : UIButton!
     @IBOutlet weak var viewWalletBtn : UIButton!
     @IBOutlet weak var settingsBtn : UIButton!
-    
+    @IBOutlet weak var dateLabel : UILabel!
+
     //MARK: INSTANCE VARIABLES
     
     let activityManager = CMMotionActivityManager()
@@ -58,6 +59,8 @@ class ActivityTrackingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+      
+        setTodayDate()
         self.navigationController?.isNavigationBarHidden = true
         self.checkAuthorizationStatusAndStartTracking()
     }
@@ -107,6 +110,13 @@ class ActivityTrackingVC: UIViewController {
     }
     
     //MARK: HELPERS
+    
+    func setTodayDate() {
+        let dateFormatter = DateFormatter.init()
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+        let todayDateStr = dateFormatter.string(from: Date())
+        self.dateLabel.text  = todayDateStr
+    }
     
     @objc func appMovedToBackground() {
         self.timer?.invalidate()
@@ -239,7 +249,17 @@ extension ActivityTrackingVC {
             let activtyInfo = [ActivityKeys.id : activity.id, ActivityKeys.date : activity.date, ActivityKeys.steps : steps] as [String : Any]
             activity.upadteWith(info: activtyInfo)
         } else {
-            let activtyInfo = [ActivityKeys.id : allActivities.count + 1, ActivityKeys.date : midnightStartDate, ActivityKeys.steps : steps] as [String : Any]
+            var activityId = allActivities.count + 1
+            if allActivities.count > 0 {
+                let sortedActivities = allActivities.sorted { (a1, a2) -> Bool in
+                    return a1.date > a2.date
+                }
+                if let lastSavedActivityId = sortedActivities.first?.id {
+                    activityId = lastSavedActivityId + 1
+                }
+            }
+            let activtyInfo = [ActivityKeys.id :activityId , ActivityKeys.date : midnightStartDate, ActivityKeys.steps : steps] as [String : Any]
+
             Activity.saveWith(info: activtyInfo)
         }
     }

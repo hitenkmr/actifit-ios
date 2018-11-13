@@ -23,6 +23,8 @@ class ActivityTrackingVC: UIViewController {
     @IBOutlet weak var viewWalletBtn : UIButton!
     @IBOutlet weak var settingsBtn : UIButton!
     @IBOutlet weak var dateLabel : UILabel!
+    @IBOutlet weak var usernameLabel : UILabel!
+    @IBOutlet weak var rankLabel : UILabel!
 
     //MARK: INSTANCE VARIABLES
     
@@ -55,6 +57,8 @@ class ActivityTrackingVC: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
         notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+        
+        getUSerRank()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -163,6 +167,35 @@ class ActivityTrackingVC: UIViewController {
                     self?.saveCurrentStepsCounts(steps: totalSteps, midnightStartDate: AppDelegate.todayStartDate())
                     NotificationCenter.default.post(name: Notification.Name.init(StepsUpdatedNotification), object: nil, userInfo: ["steps" : totalSteps])
                 }
+            }
+        }
+    }
+    
+    //MARK: WEB SERVICES
+    
+    func getUSerRank() {
+        if let user = User.current() {
+            let username = user.steemit_username
+            APIMaster.getUserRank(username : username,completion: { [weak self] (json) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                    if let jsonString = json as? String {
+                        if let data = jsonString.data(using: .utf8) {
+                            do {
+                                if let jsonDict = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? [String :Any] {
+                                    if let user_rank = jsonDict["user_rank"] as? Double {
+                                        self?.usernameLabel.text = "@\(username)"
+                                        self?.rankLabel.text = "\(user_rank)"
+                                    }
+                                } else {
+                                    print("bad json")
+                                }
+                            } catch let error as NSError {
+                                print(error)
+                            }
+                        }
+                    }
+                })
+            }) { (error) in
             }
         }
     }

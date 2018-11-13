@@ -148,11 +148,6 @@ struct HttpMethods  {
 
 //API URLS
 struct ApiUrls {
-    static let postActivity = "https://actifit-pst-cr3at0r.herokuapp.com/api/p0stact1f1t"
-    static let getDailyLeaderboard = "https://actifit-pst-cr3at0r.herokuapp.com/api/top5p0sts"
-    static let walletBalance = "https://actifitbot.herokuapp.com/user/" /*append USERNAME at last(https://actifitbot.herokuapp.com/user/USERNAME)*/
-    static let transactions = "https://actifitbot.herokuapp.com/transactions/" /*append USERNAME at last(https://actifitbot.herokuapp.com/transactions/USERNAME)*/
-    
-    static let charities =  "https://actifitbot.herokuapp.com/charities"
+   
 }
 

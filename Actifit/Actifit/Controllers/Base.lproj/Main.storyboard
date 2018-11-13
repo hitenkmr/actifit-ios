@@ -145,15 +145,31 @@
                                     <constraint firstItem="dVD-O4-bdZ" firstAttribute="leading" secondItem="fZd-qz-btJ" secondAttribute="leading" id="qCj-S2-9Kq"/>
                                 </constraints>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QD-rU-bBr">
+                                <rect key="frame" x="10" y="90" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.96078431369999995" green="0.0" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lk6-yF-VKF">
+                                <rect key="frame" x="310" y="90" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.96078431369999995" green="0.0" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="1QD-rU-bBr" firstAttribute="leading" secondItem="r8C-ak-wxx" secondAttribute="leading" constant="10" id="0KS-zq-lLV"/>
                             <constraint firstItem="fZd-qz-btJ" firstAttribute="top" secondItem="hSy-ZB-wJo" secondAttribute="bottom" id="0Xx-n6-MMH"/>
+                            <constraint firstItem="r8C-ak-wxx" firstAttribute="trailing" secondItem="lk6-yF-VKF" secondAttribute="trailing" constant="10" id="1fd-0c-xIt"/>
                             <constraint firstItem="fZd-qz-btJ" firstAttribute="bottom" secondItem="r8C-ak-wxx" secondAttribute="bottom" id="4f1-ZO-bcd"/>
                             <constraint firstItem="hSy-ZB-wJo" firstAttribute="top" secondItem="cxL-Ia-eyH" secondAttribute="top" id="NBX-6c-o2s"/>
+                            <constraint firstItem="lk6-yF-VKF" firstAttribute="top" secondItem="hSy-ZB-wJo" secondAttribute="bottom" constant="20" id="WOP-an-Luq"/>
                             <constraint firstItem="fZd-qz-btJ" firstAttribute="leading" secondItem="r8C-ak-wxx" secondAttribute="leading" id="qm8-YR-tAR"/>
                             <constraint firstItem="fZd-qz-btJ" firstAttribute="trailing" secondItem="r8C-ak-wxx" secondAttribute="trailing" id="r5u-HM-TTL"/>
                             <constraint firstItem="hSy-ZB-wJo" firstAttribute="trailing" secondItem="r8C-ak-wxx" secondAttribute="trailing" id="v2j-Dx-Scf"/>
+                            <constraint firstItem="1QD-rU-bBr" firstAttribute="top" secondItem="hSy-ZB-wJo" secondAttribute="bottom" constant="20" id="wia-2G-frr"/>
                             <constraint firstItem="hSy-ZB-wJo" firstAttribute="leading" secondItem="r8C-ak-wxx" secondAttribute="leading" id="zX4-Ca-Wyv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r8C-ak-wxx"/>
@@ -162,8 +178,10 @@
                     <connections>
                         <outlet property="dateLabel" destination="jjA-eU-UAI" id="eb2-6B-iS7"/>
                         <outlet property="postToSteemitBtn" destination="MAF-op-rIK" id="YC3-md-pJh"/>
+                        <outlet property="rankLabel" destination="lk6-yF-VKF" id="c58-tG-aAM"/>
                         <outlet property="settingsBtn" destination="3zr-8Q-8Yp" id="im0-YX-395"/>
                         <outlet property="stepsCountLabel" destination="8kT-o3-JOa" id="xhD-bV-8t8"/>
+                        <outlet property="usernameLabel" destination="1QD-rU-bBr" id="JaP-00-Th2"/>
                         <outlet property="viewDailyLeaderboardBtn" destination="ypm-hf-zKK" id="ArB-g0-BsH"/>
                         <outlet property="viewTrackingHistoryBtn" destination="DXy-TB-qIL" id="N7d-lZ-8et"/>
                         <outlet property="viewWalletBtn" destination="GdR-DB-7sJ" id="iCY-ac-04n"/>
